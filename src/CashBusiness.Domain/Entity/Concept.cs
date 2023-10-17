@@ -1,6 +1,6 @@
 namespace CashBusiness.Domain.Entity;
 
 public class Concept{
-    private Guid id = Guid.NewGuid();
-    private string name { get; set; }
+    public Guid id = Guid.NewGuid();
+    public string name { get; set; } = null!;
 }

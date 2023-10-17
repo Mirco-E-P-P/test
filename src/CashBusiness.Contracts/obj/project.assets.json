@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mirco\\Documents\\workspace\\CashBusiness\\src\\CashBusiness.Contracts\\CashBusiness.Contracts.csproj",
+      "projectUniqueName": "C:\\Users\\Mirco\\Documents\\workspace\\CashBusinesss\\src\\CashBusiness.Contracts\\CashBusiness.Contracts.csproj",
       "projectName": "CashBusiness.Contracts",
-      "projectPath": "C:\\Users\\Mirco\\Documents\\workspace\\CashBusiness\\src\\CashBusiness.Contracts\\CashBusiness.Contracts.csproj",
+      "projectPath": "C:\\Users\\Mirco\\Documents\\workspace\\CashBusinesss\\src\\CashBusiness.Contracts\\CashBusiness.Contracts.csproj",
       "packagesPath": "C:\\Users\\Mirco\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mirco\\Documents\\workspace\\CashBusiness\\src\\CashBusiness.Contracts\\obj\\",
+      "outputPath": "C:\\Users\\Mirco\\Documents\\workspace\\CashBusinesss\\src\\CashBusiness.Contracts\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
