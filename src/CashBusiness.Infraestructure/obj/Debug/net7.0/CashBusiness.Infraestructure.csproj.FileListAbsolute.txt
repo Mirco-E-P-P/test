@@ -1,0 +1,17 @@
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\bin\Debug\net7.0\CashBusiness.Infraestructure.deps.json
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\bin\Debug\net7.0\CashBusiness.Infraestructure.dll
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\bin\Debug\net7.0\CashBusiness.Infraestructure.pdb
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\bin\Debug\net7.0\CashBusiness.Application.dll
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\bin\Debug\net7.0\CashBusiness.Domain.dll
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\bin\Debug\net7.0\CashBusiness.Application.pdb
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\bin\Debug\net7.0\CashBusiness.Domain.pdb
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\CashBusiness.Infraestructure.csproj.AssemblyReference.cache
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\CashBusiness.Infraestructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\CashBusiness.Infraestructure.AssemblyInfoInputs.cache
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\CashBusiness.Infraestructure.AssemblyInfo.cs
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\CashBusiness.Infraestructure.csproj.CoreCompileInputs.cache
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\CashBusiness.Infraestructure.csproj.CopyComplete
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\CashBusiness.Infraestructure.dll
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\refint\CashBusiness.Infraestructure.dll
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\CashBusiness.Infraestructure.pdb
+C:\Users\Mirco\Documents\workspace\CashBusiness\src\CashBusiness.Infraestructure\obj\Debug\net7.0\ref\CashBusiness.Infraestructure.dll

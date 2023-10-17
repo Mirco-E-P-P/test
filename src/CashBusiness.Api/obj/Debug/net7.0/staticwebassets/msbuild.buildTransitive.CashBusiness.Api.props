@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\CashBusiness.Api.props" />
+</Project>

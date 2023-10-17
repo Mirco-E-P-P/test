@@ -1,0 +1,49 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "CashBusiness.Infraestructure/1.0.0": {
+        "dependencies": {
+          "CashBusiness.Application": "1.0.0"
+        },
+        "runtime": {
+          "CashBusiness.Infraestructure.dll": {}
+        }
+      },
+      "CashBusiness.Application/1.0.0": {
+        "dependencies": {
+          "CashBusiness.Domain": "1.0.0"
+        },
+        "runtime": {
+          "CashBusiness.Application.dll": {}
+        }
+      },
+      "CashBusiness.Domain/1.0.0": {
+        "runtime": {
+          "CashBusiness.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CashBusiness.Infraestructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CashBusiness.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CashBusiness.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
