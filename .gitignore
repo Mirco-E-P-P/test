@@ -481,15 +481,3 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-/CashBusiness.Api/obj/**
-/CashBusiness.Api/bin/Debug/**
-/CashBusiness.Application/bin/Debug/**
-/CashBusiness.Domain/bin/Debug/**
-
-
-# Bin Folders 
-
-src/CashBusiness.Infraestructure/obj/*
-.vs/CashBusiness/*
-
-
