@@ -7,13 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-
-builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseSqlServer("Server=DESKTOP-2TTGTQJ;Database=pruebabasedatos;Integrated Security=True; TrustServerCertificate=True",
-    b => b.MigrationsAssembly("CashBusiness.Api")));
-
-
-
+builder.Services.AddInfraestructure();
 
 
 
