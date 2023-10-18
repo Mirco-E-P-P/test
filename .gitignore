@@ -7,18 +7,6 @@
 
 src/CashBusiness.Api/Migrations/*
 
-# Bin modules 
-
-src/**/obj/*
-
-
-
-
-
-
-
-
-
 
 # User-specific files
 *.rsuser
@@ -492,3 +480,59 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+/CashBusiness.Api/obj/**
+/CashBusiness.Api/bin/Debug/**
+/CashBusiness.Application/bin/Debug/**
+/CashBusiness.Domain/bin/Debug/**
+
+
+# Bin Folders 
+
+src/CashBusiness.Infraestructure/obj/*
+.vs/CashBusiness/*
+
+
+
+/src/CashBusiness.Infraestructure/bin/Debug/net7.0/CashBusiness.Application.dll
+/src/CashBusiness.Infraestructure/bin/Debug/net7.0/CashBusiness.Application.pdb
+/src/CashBusiness.Infraestructure/bin/Debug/net7.0/CashBusiness.Domain.dll
+/src/CashBusiness.Infraestructure/bin/Debug/net7.0/CashBusiness.Domain.pdb
+/src/CashBusiness.Infraestructure/bin/Debug/net7.0/CashBusiness.Infraestructure.deps.json
+/src/CashBusiness.Infraestructure/bin/Debug/net7.0/CashBusiness.Infraestructure.dll
+/src/CashBusiness.Infraestructure/bin/Debug/net7.0/CashBusiness.Infraestructure.pdb
+/src/CashBusiness.Domain/bin/Debug/net7.0/CashBusiness.Domain.dll
+/src/CashBusiness.Domain/bin/Debug/net7.0/CashBusiness.Domain.pdb
+/src/CashBusiness.Domain/obj/CashBusiness.Domain.csproj.nuget.g.props
+/src/CashBusiness.Domain/obj/rider.project.restore.info
+/src/CashBusiness.Domain/obj/Debug/net7.0/CashBusiness.Domain.dll
+/src/CashBusiness.Domain/obj/Debug/net7.0/CashBusiness.Domain.pdb
+/src/CashBusiness.Domain/obj/Debug/net7.0/ref/CashBusiness.Domain.dll
+/src/CashBusiness.Domain/obj/Debug/net7.0/refint/CashBusiness.Domain.dll
+/src/CashBusiness.Application/bin/Debug/net7.0/CashBusiness.Application.deps.json
+/src/CashBusiness.Application/bin/Debug/net7.0/CashBusiness.Application.dll
+/src/CashBusiness.Application/bin/Debug/net7.0/CashBusiness.Application.pdb
+/src/CashBusiness.Application/bin/Debug/net7.0/CashBusiness.Domain.dll
+/src/CashBusiness.Application/bin/Debug/net7.0/CashBusiness.Domain.pdb
+/src/CashBusiness.Application/obj/CashBusiness.Application.csproj.nuget.dgspec.json
+/src/CashBusiness.Application/obj/CashBusiness.Application.csproj.nuget.g.props
+/src/CashBusiness.Application/obj/Debug/net7.0/CashBusiness.Application.assets.cache
+/src/CashBusiness.Application/obj/Debug/net7.0/CashBusiness.Application.csproj.AssemblyReference.cache
+/src/CashBusiness.Application/obj/Debug/net7.0/CashBusiness.Application.csproj.CoreCompileInputs.cache
+/src/CashBusiness.Application/obj/Debug/net7.0/CashBusiness.Application.dll
+/src/CashBusiness.Application/obj/Debug/net7.0/CashBusiness.Application.pdb
+/src/CashBusiness.Application/obj/Debug/net7.0/ref/CashBusiness.Application.dll
+/src/CashBusiness.Application/obj/Debug/net7.0/refint/CashBusiness.Application.dll
+/src/CashBusiness.Application/obj/project.assets.json
+/src/CashBusiness.Application/obj/project.nuget.cache
+/src/CashBusiness.Application/obj/project.packagespec.json
+/src/CashBusiness.Application/obj/rider.project.model.nuget.info
+/src/CashBusiness.Application/obj/rider.project.restore.info
+/src/CashBusiness.Contracts/obj/CashBusiness.Contracts.csproj.nuget.g.props
+/src/CashBusiness.Contracts/obj/rider.project.restore.info
+/src/CashBusiness.Api/obj/CashBusiness.Api.csproj.nuget.dgspec.json
+/src/CashBusiness.Api/obj/CashBusiness.Api.csproj.nuget.g.props
+/src/CashBusiness.Api/obj/Debug/net7.0/CashBusiness.Api.pdb
+/src/CashBusiness.Api/obj/project.assets.json
+/src/CashBusiness.Api/obj/project.nuget.cache
+/src/CashBusiness.Api/obj/rider.project.restore.info
