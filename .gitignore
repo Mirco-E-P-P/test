@@ -7,6 +7,10 @@
 
 src/CashBusiness.Api/Migrations/*
 
+# Sonar lint files
+
+.idea/.idea.CashBusiness/.idea/sonarlint/
+
 
 # User-specific files
 *.rsuser
