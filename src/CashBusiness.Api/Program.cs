@@ -1,3 +1,4 @@
+using CashBusiness.Application;
 using CashBusiness.Infraestructure;
 using CashBusiness.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddInfraestructure();
+builder.Services.AddApplication();
 
 
 
