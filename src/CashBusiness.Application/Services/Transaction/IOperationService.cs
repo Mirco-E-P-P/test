@@ -1,6 +1,9 @@
-﻿namespace CashBusiness.Application.Services.Transaction;
+﻿using CashBusiness.Domain.Entity;
 
-public class IOperationService
+namespace CashBusiness.Application.Services.Transaction;
+
+public interface IOperationService
 {
-    
+    public Task<List<Operation>> findAll();
+    public Task<Operation> findById(string id);
 }
