@@ -2,6 +2,6 @@ namespace  CashBusiness.Domain.Entity;
 
 
 public class Currency{
-    private Guid id = Guid.NewGuid();
-    private string name { get; set; } = null!;
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Name { get; set; } = String.Empty;
 }
