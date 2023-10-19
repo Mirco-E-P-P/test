@@ -5,7 +5,7 @@
 
 # Migration files
 
-src/CashBusiness.Api/Migrations/*
+src/CashBusiness.Api/Migrations/**
 
 # Sonar lint files
 
@@ -485,3 +485,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+/src/CashBusiness.Api/Migrations/AppDbContextModelSnapshot.cs
