@@ -1,5 +1,7 @@
 ﻿using CashBusiness.Application.Services.Transaction;
 using CashBusiness.Application.Services.Transaction.Queries;
+using CashBusiness.Domain.Entity;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashBusiness.Api.Controllers.Transaction;
@@ -18,9 +20,11 @@ public class OperationController: ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var result = await _operationQueryService.FindAllOperationsAsync();
-        return Ok(result);
+        Result<List<Operation>> result = await _operationQueryService.FindAllOperationsAsync();
+        return Ok(result.Value);
     }
+    
+    
     
     
 }

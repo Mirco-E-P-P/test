@@ -1,5 +1,7 @@
-﻿using CashBusiness.Application.Common.Persistence;
+﻿using CashBusiness.Application.Common.Errors;
+using CashBusiness.Application.Common.Persistence;
 using CashBusiness.Domain.Entity;
+using FluentResults;
 
 namespace CashBusiness.Application.Services.Transaction.Queries;
 
@@ -12,13 +14,20 @@ public class OperationQueryService: IOperationQueryService
         _operationRepository = operationRepository;
     }
     
-    public async Task<Operation> FindOperationByIdAsync(string id)
+    public async Task<Result<Operation>> FindOperationByIdAsync(string id)
     {
-        return await _operationRepository.findById(id);
+        Operation operation = await _operationRepository.findById(id);
+        if (operation == null)
+        {
+            return Result.Fail(new OperationNotFound($"Could not find operation with id:{id}" ));
+        }
+        
+        return Result.Ok(operation);
+        
     }
 
-    public async Task<List<Operation>> FindAllOperationsAsync()
+    public async Task<Result<List<Operation>>> FindAllOperationsAsync()
     {
-        return await _operationRepository.findAll();
+        return Result.Ok(await _operationRepository.findAll());
     }
 }
