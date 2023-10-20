@@ -4,7 +4,7 @@ using CashBusiness.Application.UnitTests.Services.Transaction.ServiceUtils;
 using CashBusiness.Domain.Entity;
 using CashBusiness.Infraestructure.Persistence;
 using CashBusiness.Infraestructure.Persistence.Transaction;
-
+using FluentResults;
 using Moq;
 
 
@@ -41,10 +41,9 @@ public class OperationServiceTests
             .ReturnsAsync(new List<Operation> {operation});
 
         // Act
-        var result = await _operationService.FindAllOperationsAsync();
-
+        Result<List<Operation>> result = await _operationService.FindAllOperationsAsync();
         // Assert
-        Assert.Single(result);
+        Assert.Single(result.Value);
     }
 
 
@@ -60,10 +59,10 @@ public class OperationServiceTests
         var repository = new OperationRepositoryImpl(dbContext);
         var service = new OperationQueryService(repository);
         
-        var operations = await service.FindAllOperationsAsync();
+        Result<List<Operation>> operations = await service.FindAllOperationsAsync();
         
         Assert.NotNull(operations);
-        Assert.Equal(2, operations.Count()); 
+        Assert.Equal(2, operations.Value.Count()); 
     }
 
 
