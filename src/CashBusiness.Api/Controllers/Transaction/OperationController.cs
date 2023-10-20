@@ -18,7 +18,7 @@ public class OperationController: ControllerBase
     }
     
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> findAllOperations()
     {
         Result<List<Operation>> result = await _operationQueryService.FindAllOperationsAsync();
         return Ok(result.Value);
