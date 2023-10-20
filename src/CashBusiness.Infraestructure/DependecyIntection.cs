@@ -1,7 +1,9 @@
 using CashBusiness.Application.Common.Persistence;
+using CashBusiness.Application.Common.Persistence.user;
 using Microsoft.EntityFrameworkCore;
 using CashBusiness.Infraestructure.Persistence;
 using CashBusiness.Infraestructure.Persistence.Transaction;
+using CashBusiness.Infraestructure.Persistence.User;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CashBusiness.Infraestructure;
@@ -14,6 +16,7 @@ public static class DependecyIntection
                 b => b.MigrationsAssembly("CashBusiness.Api")));
 
         services.AddScoped<IOperationRepository, OperationRepositoryImpl>();
+        services.AddScoped<IClientRepository, ClientRepositoryImpl>();
         
         return services;
 
