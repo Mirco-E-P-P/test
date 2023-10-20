@@ -21,7 +21,7 @@ public class ClientCommandService: IClientCommandService
         
         if (existingClient!= null)
         {
-            return Result.Fail(new DuplicatedUser($"Client with name {name} already exists"));
+            return Result.Fail(new ClientDuplicated($"Client with name {name} already exists"));
         }
         
         Client client = await _clientRepository.PersistedClient(name, phoneNumber);
