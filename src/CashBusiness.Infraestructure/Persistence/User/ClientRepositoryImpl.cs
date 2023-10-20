@@ -1,5 +1,7 @@
 ﻿using CashBusiness.Application.Common.Persistence.user;
 using CashBusiness.Domain.Entity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CashBusiness.Infraestructure.Persistence.User;
 
@@ -15,22 +17,31 @@ public class ClientRepositoryImpl: IClientRepository
 
     public async Task<Client> PersistedClient(string name, string phoneNumber)
     {
-
+        var client = new Client
+        {
+            Name = name,
+            PhoneNumber = phoneNumber
+        };
         
+        EntityEntry<Client> clientSaved = await _context.Clients.AddAsync(client);
+        
+        await _context.SaveChangesAsync();
+        
+        return clientSaved.Entity;
     }
 
-    public Task<Client> FindClientById(string id)
+    public async Task<Client> FindClientById(string id)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException("No implemented method");
     }
 
-    public Task<List<Client>> FindAllClients()
+    public async Task<List<Client>> FindAllClients()
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException("No implemented method");
     }
 
-    public Task<Client> FindClientByName(string name)
+    public async Task<Client> FindClientByName(string name)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException("No implemented method");
     }
 }
