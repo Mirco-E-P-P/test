@@ -1,3 +1,4 @@
+using System.Reflection;
 using CashBusiness.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +12,7 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Concept>().HasKey(concept => concept.Id);
-        modelBuilder.Entity<Operation>().HasIndex(operation => operation.Id);
-        
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
     public DbSet<Operation> Operations { get; set; }
