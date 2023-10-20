@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Common\DbContext\" />
     <Folder Include="Persistence\Context\" />
     <Folder Include="Persistence\Currency\" />
     <Folder Include="Persistence\User\" />
