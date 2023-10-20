@@ -27,7 +27,7 @@ public class ClientQueryService: IClientQueryService
 
     public async Task<Result<List<Client>>> FindAllClients()
     {
-        throw new NotImplementedException("not implemented method");
+        return Result.Ok(await _clientRepository.FindAllClients());
     }
     
 }
