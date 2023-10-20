@@ -32,7 +32,17 @@ public class ClientRepositoryImpl: IClientRepository
 
     public async Task<Client> FindClientById(string id)
     {
-        throw new NotImplementedException("No implemented method");
+        try
+        {
+            Client client = await _context.Clients.Where(client => client.Id.ToString() == id).FirstAsync();
+            return client;
+            
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+        
     }
 
     public async Task<List<Client>> FindAllClients()
