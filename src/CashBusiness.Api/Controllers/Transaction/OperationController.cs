@@ -1,4 +1,5 @@
 ﻿using CashBusiness.Application.Services.Transaction;
+using CashBusiness.Application.Services.Transaction.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashBusiness.Api.Controllers.Transaction;
@@ -7,20 +8,19 @@ namespace CashBusiness.Api.Controllers.Transaction;
 [Route("operation")]
 public class OperationController: ControllerBase
 {
-    private readonly IOperationService _operationService;
+    private readonly IOperationQueryService _operationQueryService;
     
-    public OperationController(IOperationService operationService)
+    public OperationController(IOperationQueryService operationService)
     {
-        _operationService = operationService;
+        _operationQueryService = operationService;
     }
     
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var result = await _operationService.findAll();
+        var result = await _operationQueryService.FindAllOperationsAsync();
         return Ok(result);
     }
-    
     
     
 }
