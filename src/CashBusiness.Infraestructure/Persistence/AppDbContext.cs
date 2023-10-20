@@ -11,12 +11,10 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Concept>().HasKey(concept => concept.Id);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
     public DbSet<Operation> Operations { get; set; }
-    public DbSet<Concept> Concepts { get; set; }
 }
 
 
