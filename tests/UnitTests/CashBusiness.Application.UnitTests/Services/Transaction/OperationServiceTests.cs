@@ -79,4 +79,22 @@ public class OperationServiceTests
         Assert.Equal(registeredOperationName, operationsResult.Value.Name);
         
     }
+    
+    
+    [Fact]
+    public async Task GetOperationAsync_InExistentOperationInDatabase_shouldReturnResultFail()
+    {
+        AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
+        Guid nonexistentId = Guid.NewGuid();
+        
+        var repository = new OperationRepositoryImpl(dbContext);
+        var service = new OperationQueryService(repository);
+        
+        Result<Operation> operationsResult = await service.FindOperationByIdAsync(nonexistentId.ToString());
+       
+  
+        Assert.True(operationsResult.IsFailed); 
+
+        
+    }
 }
