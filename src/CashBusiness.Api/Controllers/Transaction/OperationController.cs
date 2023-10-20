@@ -1,7 +1,10 @@
-﻿using CashBusiness.Application.Services.Transaction;
+﻿
 using CashBusiness.Application.Services.Transaction.Queries;
+using CashBusiness.Contracts.Transaction.vo;
 using CashBusiness.Domain.Entity;
 using FluentResults;
+using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashBusiness.Api.Controllers.Transaction;
@@ -11,10 +14,12 @@ namespace CashBusiness.Api.Controllers.Transaction;
 public class OperationController: ControllerBase
 {
     private readonly IOperationQueryService _operationQueryService;
+    private readonly IMapper _mapper;
     
-    public OperationController(IOperationQueryService operationService)
+    public OperationController(IOperationQueryService operationService, IMapper mapper)
     {
         _operationQueryService = operationService;
+        this._mapper = mapper;
     }
     
     [HttpGet]
@@ -27,11 +32,12 @@ public class OperationController: ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> FindOperationById(string id)
     {
+        
         Result<Operation> result = await _operationQueryService.FindOperationByIdAsync(id);
         
         if (result.IsSuccess)
         {
-            return Ok(result.Value);
+            return Ok(_mapper.Map<OperationVo>(result.Value));
         }
         
         IError firstError = result.Errors[0];
