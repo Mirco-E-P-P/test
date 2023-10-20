@@ -37,7 +37,7 @@ public class ClientRepositoryImpl: IClientRepository
 
     public async Task<List<Client>> FindAllClients()
     {
-        throw new NotImplementedException("No implemented method");
+        return await _context.Clients.ToListAsync();
     }
 
     public async Task<Client> FindClientByName(string name)
