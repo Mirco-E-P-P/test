@@ -9,7 +9,7 @@ src/CashBusiness.Api/Migrations/**
 
 # Sonar lint files
 
-.idea/.idea.CashBusiness/.idea/sonarlint/
+.idea/**
 
 
 # User-specific files
@@ -485,4 +485,17 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-/src/CashBusiness.Api/Migrations/AppDbContextModelSnapshot.cs
+/src/CashBusiness.Api/bin/Debug/net7.0/runtimes/win/lib/net6.0/**
+/.idea/.idea.CashBusiness/.idea/**
+/src/CashBusiness.Api/bin/Debug/net7.0/runtimes/win/lib/net6.0/**
+/src/CashBusiness.Api/bin/Debug/net7.0/runtimes/win-x86/native/**
+/src/CashBusiness.Api/obj/Debug/net7.0/staticwebassets/**
+/src/CashBusiness.Api/obj/Debug/net7.0/**
+/src/CashBusiness.Api/obj/**
+/src/CashBusiness.Application/obj/Debug/net7.0/**
+/src/CashBusiness.Contracts/bin/Debug/net7.0/**
+/src/CashBusiness.Contracts/obj/**
+/src/CashBusiness.Contracts/obj/Debug/net7.0/**
+/src/CashBusiness.Domain/bin/Debug/net7.0/**
+/src/CashBusiness.Domain/obj/**
+/src/CashBusiness.Infraestructure/bin/**
