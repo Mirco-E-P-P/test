@@ -30,19 +30,13 @@ public class OperationServiceTests
         Operation operation = new Operation( );
         operation.Id = Guid.NewGuid();
         operation.Name = "Ingreso";
-        
-        
-        // Arrange
-        
-        
+
         _mockOperationRepository.Setup(
                 x => x.findAll()
                 )
             .ReturnsAsync(new List<Operation> {operation});
-
-        // Act
+        
         Result<List<Operation>> result = await _operationService.FindAllOperationsAsync();
-        // Assert
         Assert.Single(result.Value);
     }
 
@@ -52,8 +46,8 @@ public class OperationServiceTests
     {
         AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
  
-        dbContext.Operations.Add(new Operation { Id = Guid.NewGuid(), Name = "Ingresosss" });
-        dbContext.Operations.Add(new Operation { Id = Guid.NewGuid(), Name = "Egtrsosadasdas" });
+        dbContext.Operations.Add(new Operation { Id = Guid.NewGuid(), Name = "Ingresos" });
+        dbContext.Operations.Add(new Operation { Id = Guid.NewGuid(), Name = "Egresos" });
         dbContext.SaveChanges();
         
         var repository = new OperationRepositoryImpl(dbContext);
@@ -65,8 +59,24 @@ public class OperationServiceTests
         Assert.Equal(2, operations.Value.Count()); 
     }
 
-
-
-
-
+    [Fact]
+    public async Task GetOperationAsync_ExistentOperationInDatabase_shouldReturnOperation()
+    {
+        AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
+        Guid registeredOperationId = Guid.NewGuid();
+        string registeredOperationName = "Devoluciones";
+        
+        dbContext.Operations.Add(new Operation { Id = registeredOperationId, Name = registeredOperationName});
+        dbContext.SaveChanges();
+        
+        var repository = new OperationRepositoryImpl(dbContext);
+        var service = new OperationQueryService(repository);
+        
+        Result<Operation> operationsResult = await service.FindOperationByIdAsync(registeredOperationId.ToString());
+       
+  
+        Assert.Equal(registeredOperationId, operationsResult.Value.Id); 
+        Assert.Equal(registeredOperationName, operationsResult.Value.Name);
+        
+    }
 }
