@@ -11,5 +11,10 @@ public class OperationMappingConfig: IRegister
         config.NewConfig<Operation, OperationVo>()
             .Map(destination => destination.Id, source => source.Id.ToString())
             .Map(destination => destination.Name, source => source.Name );
+        
+        config.NewConfig<List<OperationVo>, List<Operation>>()
+           .Map(
+               destination => destination, 
+               source => source);
     }
 }
