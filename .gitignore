@@ -499,6 +499,7 @@ $RECYCLE.BIN/
 /src/CashBusiness.Domain/bin/Debug/net7.0/**
 /src/CashBusiness.Domain/obj/**
 /src/CashBusiness.Infraestructure/bin/**
+
 /src/CashBusiness.Infraestructure/obj/**
 /src/CashBusiness.Domain/obj/**
 /src/CashBusiness.Application/obj/**
@@ -519,3 +520,4 @@ src/CashBusiness.Application/obj/Debug/net7.0/**
 src/CashBusiness.Contracts/obj/**
 src/CashBusiness.Domain/obj/**
 src/CashBusiness.Infraestructure/obj/Debug/net7.0/**
+
