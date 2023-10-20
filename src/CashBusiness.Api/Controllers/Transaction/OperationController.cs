@@ -18,13 +18,25 @@ public class OperationController: ControllerBase
     }
     
     [HttpGet]
-    public async Task<IActionResult> findAllOperations()
+    public async Task<IActionResult> FindAllOperations()
     {
         Result<List<Operation>> result = await _operationQueryService.FindAllOperationsAsync();
         return Ok(result.Value);
     }
     
-    
+    [HttpGet("{id:string}")]
+    public async Task<IActionResult> FindOperationById(string id)
+    {
+        Result<Operation> result = await _operationQueryService.FindOperationByIdAsync(id);
+
+        var firstError = result.Errors[0];
+        if (result.IsFailed)
+        {
+            return Problem(title: firstError.Message, statusCode: 404 );
+        }
+
+        return Ok(result.Value);
+    }
     
     
 }
