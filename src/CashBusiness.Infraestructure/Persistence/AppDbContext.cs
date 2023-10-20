@@ -15,6 +15,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Operation> Operations { get; set; }
+    public DbSet<Client> Clients { get; set; }
 }
 
 

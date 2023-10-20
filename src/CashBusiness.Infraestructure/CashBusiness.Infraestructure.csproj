@@ -19,7 +19,6 @@
     <Folder Include="Common\DbContext\" />
     <Folder Include="Persistence\Context\" />
     <Folder Include="Persistence\Currency\" />
-    <Folder Include="Persistence\User\" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
