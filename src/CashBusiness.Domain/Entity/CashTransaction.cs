@@ -12,4 +12,6 @@ public class CashTransaction
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
+    
+    //Todo add client id and operation id relationships
 }
