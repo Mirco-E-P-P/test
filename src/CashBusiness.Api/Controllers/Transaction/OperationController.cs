@@ -24,18 +24,19 @@ public class OperationController: ControllerBase
         return Ok(result.Value);
     }
     
-    [HttpGet("{id:string}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> FindOperationById(string id)
     {
         Result<Operation> result = await _operationQueryService.FindOperationByIdAsync(id);
-
-        var firstError = result.Errors[0];
-        if (result.IsFailed)
+        
+        if (result.IsSuccess)
         {
-            return Problem(title: firstError.Message, statusCode: 404 );
+            return Ok(result.Value);
         }
+        
+        IError firstError = result.Errors[0];
 
-        return Ok(result.Value);
+        return Problem(firstError.Message, statusCode: 404 );
     }
     
     
