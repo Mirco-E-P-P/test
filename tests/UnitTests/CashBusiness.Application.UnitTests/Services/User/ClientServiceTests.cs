@@ -55,6 +55,25 @@ public class ClientServiceTests
         Assert.Equal(HttpStatusCode.NotFound, resultClient.Errors[0].Metadata["statusCode"]);
 
     }
-
-
+    
+    [Fact]
+    public async Task ClientCommandService_RegisterClientWithNameAndUserName_ShouldReturnRegisteredClient()
+    {
+        // Act
+        AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
+        IClientRepository clientRepository = new ClientRepositoryImpl(dbContext);
+        IClientCommandService clientCommandService = new ClientCommandService(clientRepository);
+        
+        // Arrange
+        string registeredName = "Maria Delgado";
+        string registeredPhoneNumber = "60505050";
+        Result <Client> resultClient = await clientCommandService.RegisterClient(registeredName, registeredPhoneNumber);
+        
+        // Assert
+        Assert.True(resultClient.IsSuccess);
+        Assert.Equal(registeredName, resultClient.Value.Name);
+        Assert.Equal(registeredPhoneNumber, resultClient.Value.PhoneNumber);
+    }
+    
+  
 }
