@@ -23,7 +23,7 @@ public class ClientRepositoryImpl: IClientRepository
             PhoneNumber = phoneNumber
         };
         
-        EntityEntry<Client> clientSaved = await _context.Clients.AddAsync(client);
+        EntityEntry<Client> clientSaved = _context.Clients.Add(client);
         
         await _context.SaveChangesAsync();
         
