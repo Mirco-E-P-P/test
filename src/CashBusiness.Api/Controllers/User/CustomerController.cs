@@ -46,7 +46,7 @@ public class CustomerController: ControllerBase
     public async Task<IActionResult> RegisterCustomer(CreateCustomerDto createCustomerDto)
     {
         Result<Customer> customerResult = await _customerCommandService.RegisterCustomer(createCustomerDto.Name, createCustomerDto.PhoneNumber);
-        return Ok( customerResult.Value );
+        return Ok( _mapper.Map<CustomerVo>(customerResult.Value) );
     }
 
     [HttpGet]
