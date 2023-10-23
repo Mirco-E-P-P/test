@@ -13,11 +13,9 @@ public class CashTransactionCommandService: ICashTransactionCommandService
         _repository = repository;
     }
     
-    public async Task<Result<CashTransaction>> PersistCashTransaction(string clientId, string voucher, string operationId, double amount, string observation)
+    public async Task<Result<CashTransaction>> PersistCashTransaction(CashTransaction cashTransaction)
     {
-        CashTransaction savedTransaction = await 
-            _repository.PersistCashTransaction(clientId, voucher, operationId, amount, observation);
-
+        CashTransaction savedTransaction = await _repository.PersistCashTransaction(cashTransaction);
         return Result.Ok(savedTransaction);
     }
 }
