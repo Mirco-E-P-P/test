@@ -10,11 +10,11 @@ using FluentResults;
 
 namespace CashBusiness.Application.UnitTests.Services.User;
 
-public class ClientServiceTests
+public class CustomerServiceTests
 {
     
     [Fact]
-    public async Task ClientQueryService_GetRegisteredClientById_ShouldReturnClient()
+    public async Task CustomerQueryService_GetRegisteredCustomerById_ShouldReturnCustomer()
     {
         //
         AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
@@ -30,14 +30,14 @@ public class ClientServiceTests
         await dbContext.SaveChangesAsync();
         
         //
-        Result <Customer> resultClient = await customerQueryService.FindCustomerById(registeredId.ToString());
+        Result <Customer> resultCustomer = await customerQueryService.FindCustomerById(registeredId.ToString());
         
-        Assert.Equal(registeredId.ToString(), resultClient.Value.Id.ToString());
-        Assert.True(resultClient.IsSuccess);
+        Assert.Equal(registeredId.ToString(), resultCustomer.Value.Id.ToString());
+        Assert.True(resultCustomer.IsSuccess);
     }
 
     [Fact]
-    public async Task ClientQueryService_FindNoRegisteredClientById_ShouldNotFoundClientError()
+    public async Task CustomerQueryService_FindNoRegisteredCustomerById_ShouldNotFoundCustomerError()
     {
         //
         AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
@@ -48,16 +48,16 @@ public class ClientServiceTests
         Guid noRegisteredId = Guid.NewGuid();
         
         //
-        Result <Customer> resultClient = await customerQueryService.FindCustomerById(noRegisteredId.ToString());
+        Result <Customer> resultCustomer = await customerQueryService.FindCustomerById(noRegisteredId.ToString());
         
         
-        Assert.False(resultClient.IsSuccess);
-        Assert.Equal(HttpStatusCode.NotFound, resultClient.Errors[0].Metadata["statusCode"]);
+        Assert.False(resultCustomer.IsSuccess);
+        Assert.Equal(HttpStatusCode.NotFound, resultCustomer.Errors[0].Metadata["statusCode"]);
 
     }
     
     [Fact]
-    public async Task ClientCommandService_RegisterClientWithNameAndUserName_ShouldReturnRegisteredClient()
+    public async Task CustomerCommandService_RegisterCustomerWithNameAndUserName_ShouldReturnRegisteredCustomer()
     {
         // Act
         AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
@@ -65,14 +65,14 @@ public class ClientServiceTests
         ICustomerCommandService customerCommandService = new CustomerCommandService(customerRepository);
         
         // Arrange
-        string newClientName = "Maria Delgado";
-        string NewClientPhoneNumber = "60505050";
-        Result <Customer> resultClient = await customerCommandService.RegisterCustomer(newClientName, NewClientPhoneNumber);
+        string newCustomerName = "Maria Delgado";
+        string NewCustomerPhoneNumber = "60505050";
+        Result <Customer> resultCustomer = await customerCommandService.RegisterCustomer(newCustomerName, NewCustomerPhoneNumber);
         
         // Assert
-        Assert.True(resultClient.IsSuccess);
-        Assert.Equal(newClientName, resultClient.Value.Name);
-        Assert.Equal(NewClientPhoneNumber, resultClient.Value.PhoneNumber);
+        Assert.True(resultCustomer.IsSuccess);
+        Assert.Equal(newCustomerName, resultCustomer.Value.Name);
+        Assert.Equal(NewCustomerPhoneNumber, resultCustomer.Value.PhoneNumber);
     }
     
 }
