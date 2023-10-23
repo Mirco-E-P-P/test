@@ -1,6 +1,7 @@
 ﻿using CashBusiness.Application.Services.User.Commands;
 using CashBusiness.Application.Services.User.Queries;
 using CashBusiness.Contracts.User;
+using CashBusiness.Contracts.User.vo;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 using MapsterMapper;
@@ -52,7 +53,8 @@ public class CustomerController: ControllerBase
     public async Task<IActionResult> FinAllCustomer()
     {
         Result<List<Customer>> customersResult = await _customerQueryService.FindAllCustomers();
-        return Ok(customersResult.Value);
+        List<CustomerVo> customerVos = _mapper.Map<List<CustomerVo>>(customersResult.Value);
+        return Ok(customerVos);
     }
 
     
