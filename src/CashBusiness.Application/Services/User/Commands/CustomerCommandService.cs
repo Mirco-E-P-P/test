@@ -15,10 +15,10 @@ public class ClientCommandService: IClientCommandService
     }
 
 
-    public async Task<Result<Client>> RegisterClient(string name, string phoneNumber)
+    public async Task<Result<Customer>> RegisterClient(string name, string phoneNumber)
     {
-        Client client = await _clientRepository.PersistedClient(name, phoneNumber);
-        return Result.Ok(client);
+        Customer customer = await _clientRepository.PersistedClient(name, phoneNumber);
+        return Result.Ok(customer);
     }
     
 }
