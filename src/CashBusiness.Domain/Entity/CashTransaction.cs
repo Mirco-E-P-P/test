@@ -5,7 +5,7 @@ public class CashTransaction
     public int Index;
     public Guid Id { get; set; } = Guid.NewGuid();
    
-    public string ClientId { get; set; } = String.Empty;
+    public string CustomerId { get; set; } = String.Empty;
     public string Voucher { get; set; } = String.Empty;
     public string OperationId { get; set; } = String.Empty;
     public double Amount { get; set; } = 0.0;
