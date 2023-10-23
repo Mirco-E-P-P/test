@@ -23,7 +23,7 @@ public class CustomerRepositoryImpl: IClientRepository
             PhoneNumber = phoneNumber
         };
         
-        EntityEntry<Customer> clientSaved = _context.Clients.Add(client);
+        EntityEntry<Customer> clientSaved = _context.Customers.Add(client);
         
         await _context.SaveChangesAsync();
         
@@ -34,7 +34,7 @@ public class CustomerRepositoryImpl: IClientRepository
     {
         try
         {
-            Customer customer = await _context.Clients.Where(client => client.Id.ToString() == id).FirstAsync();
+            Customer customer = await _context.Customers.Where(client => client.Id.ToString() == id).FirstAsync();
             return customer;
             
         }
@@ -47,14 +47,14 @@ public class CustomerRepositoryImpl: IClientRepository
 
     public async Task<List<Customer>> FindAllClients()
     {
-        return await _context.Clients.ToListAsync();
+        return await _context.Customers.ToListAsync();
     }
 
     public async Task<Customer> FindClientByName(string name)
     {
         try
         {
-            Customer customer = await _context.Clients.Where(client => client.Name == name).FirstAsync();
+            Customer customer = await _context.Customers.Where(client => client.Name == name).FirstAsync();
             return customer;
         }
         catch (Exception e)
