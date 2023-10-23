@@ -5,5 +5,5 @@ namespace CashBusiness.Application.Services.User.Commands;
 
 public interface ICustomerCommandService
 {
-    public Task<Result<Customer>> RegisterClient(string name, string phoneNumber);
+    public Task<Result<Customer>> RegisterCustomer(string name, string phoneNumber);
 }

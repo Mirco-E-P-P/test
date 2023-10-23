@@ -15,7 +15,7 @@ public class CustomerCommandService: ICustomerCommandService
     }
 
 
-    public async Task<Result<Customer>> RegisterClient(string name, string phoneNumber)
+    public async Task<Result<Customer>> RegisterCustomer(string name, string phoneNumber)
     {
         Customer customer = await _customerRepository.PersistedCustomer(name, phoneNumber);
         return Result.Ok(customer);
