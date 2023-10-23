@@ -39,7 +39,7 @@ public class CustomerController: ControllerBase
             return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
         }
         
-        return Ok(customerResult.Value);
+        return Ok(_mapper.Map<CustomerVo>(customerResult.Value));
     }
 
     [HttpPost]
