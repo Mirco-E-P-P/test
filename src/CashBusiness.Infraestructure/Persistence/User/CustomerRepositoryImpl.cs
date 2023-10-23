@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CashBusiness.Infraestructure.Persistence.User;
 
-public class CustomerRepositoryImpl: IClientRepository
+public class CustomerRepositoryImpl: ICustomerRepository
 {
     private readonly AppDbContext _context;
 
@@ -15,26 +15,26 @@ public class CustomerRepositoryImpl: IClientRepository
     }
 
 
-    public async Task<Customer> PersistedClient(string name, string phoneNumber)
+    public async Task<Customer> PersistedCustomer(string name, string phoneNumber)
     {
-        var client = new Customer
+        var customer = new Customer
         {
             Name = name,
             PhoneNumber = phoneNumber
         };
         
-        EntityEntry<Customer> clientSaved = _context.Customers.Add(client);
+        EntityEntry<Customer> customerSaved = _context.Customers.Add(customer);
         
         await _context.SaveChangesAsync();
         
-        return clientSaved.Entity;
+        return customerSaved.Entity;
     }
 
-    public async Task<Customer> FindClientById(string id)
+    public async Task<Customer> FindCustomerById(string id)
     {
         try
         {
-            Customer customer = await _context.Customers.Where(client => client.Id.ToString() == id).FirstAsync();
+            Customer customer = await _context.Customers.Where(customer => customer.Id.ToString() == id).FirstAsync();
             return customer;
             
         }
@@ -45,16 +45,16 @@ public class CustomerRepositoryImpl: IClientRepository
         
     }
 
-    public async Task<List<Customer>> FindAllClients()
+    public async Task<List<Customer>> FindAllCustomers()
     {
         return await _context.Customers.ToListAsync();
     }
 
-    public async Task<Customer> FindClientByName(string name)
+    public async Task<Customer> FindCustomerByName(string name)
     {
         try
         {
-            Customer customer = await _context.Customers.Where(client => client.Name == name).FirstAsync();
+            Customer customer = await _context.Customers.Where(customer => customer.Name == name).FirstAsync();
             return customer;
         }
         catch (Exception e)
