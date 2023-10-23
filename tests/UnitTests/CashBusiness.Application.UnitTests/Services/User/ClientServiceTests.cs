@@ -18,19 +18,19 @@ public class ClientServiceTests
     {
         //
         AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
-        IClientRepository clientRepository = new ClientRepositoryImpl(dbContext);
-        IClientQueryService clientQueryService = new ClientQueryService(clientRepository);
+        ICustomerRepository customerRepository = new CustomerRepositoryImpl(dbContext);
+        ICustomerQueryService customerQueryService = new CustomerQueryService(customerRepository);
         
         //
         Guid registeredId = Guid.NewGuid();
         string registeredName = "Juan Perez";
         string registeredPhoneNumber = "60606060";
         
-        dbContext.Clients.Add(new Client { Id = registeredId, Name = registeredName, PhoneNumber = registeredPhoneNumber });
+        dbContext.Customers.Add(new Customer { Id = registeredId, Name = registeredName, PhoneNumber = registeredPhoneNumber });
         await dbContext.SaveChangesAsync();
         
         //
-        Result <Client> resultClient = await clientQueryService.FindClientById(registeredId.ToString());
+        Result <Customer> resultClient = await customerQueryService.FindCustomerById(registeredId.ToString());
         
         Assert.Equal(registeredId.ToString(), resultClient.Value.Id.ToString());
         Assert.True(resultClient.IsSuccess);
@@ -41,14 +41,14 @@ public class ClientServiceTests
     {
         //
         AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
-        IClientRepository clientRepository = new ClientRepositoryImpl(dbContext);
-        IClientQueryService clientQueryService = new ClientQueryService(clientRepository);
+        ICustomerRepository customerRepository = new CustomerRepositoryImpl(dbContext);
+        ICustomerQueryService customerQueryService = new CustomerQueryService(customerRepository);
         
         //
         Guid noRegisteredId = Guid.NewGuid();
         
         //
-        Result <Client> resultClient = await clientQueryService.FindClientById(noRegisteredId.ToString());
+        Result <Customer> resultClient = await customerQueryService.FindCustomerById(noRegisteredId.ToString());
         
         
         Assert.False(resultClient.IsSuccess);
@@ -61,13 +61,13 @@ public class ClientServiceTests
     {
         // Act
         AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
-        IClientRepository clientRepository = new ClientRepositoryImpl(dbContext);
-        IClientCommandService clientCommandService = new ClientCommandService(clientRepository);
+        ICustomerRepository customerRepository = new CustomerRepositoryImpl(dbContext);
+        ICustomerCommandService customerCommandService = new CustomerCommandService(customerRepository);
         
         // Arrange
         string newClientName = "Maria Delgado";
         string NewClientPhoneNumber = "60505050";
-        Result <Client> resultClient = await clientCommandService.RegisterClient(newClientName, NewClientPhoneNumber);
+        Result <Customer> resultClient = await customerCommandService.RegisterCustomer(newClientName, NewClientPhoneNumber);
         
         // Assert
         Assert.True(resultClient.IsSuccess);
