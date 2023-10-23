@@ -65,15 +65,14 @@ public class ClientServiceTests
         IClientCommandService clientCommandService = new ClientCommandService(clientRepository);
         
         // Arrange
-        string registeredName = "Maria Delgado";
-        string registeredPhoneNumber = "60505050";
-        Result <Client> resultClient = await clientCommandService.RegisterClient(registeredName, registeredPhoneNumber);
+        string newClientName = "Maria Delgado";
+        string NewClientPhoneNumber = "60505050";
+        Result <Client> resultClient = await clientCommandService.RegisterClient(newClientName, NewClientPhoneNumber);
         
         // Assert
         Assert.True(resultClient.IsSuccess);
-        Assert.Equal(registeredName, resultClient.Value.Name);
-        Assert.Equal(registeredPhoneNumber, resultClient.Value.PhoneNumber);
+        Assert.Equal(newClientName, resultClient.Value.Name);
+        Assert.Equal(NewClientPhoneNumber, resultClient.Value.PhoneNumber);
     }
     
-  
 }
