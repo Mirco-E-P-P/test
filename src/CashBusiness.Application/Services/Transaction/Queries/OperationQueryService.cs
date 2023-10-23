@@ -16,15 +16,14 @@ public class OperationQueryService: IOperationQueryService
     
     public async Task<Result<Operation>> FindOperationByIdAsync(string id)
     {
-        try
-        {
-            Operation operation = await _operationRepository.findById(id);
-            return Result.Ok(operation);
-        }
-        catch (Exception e)
+        Operation operation = await _operationRepository.findById(id);
+        
+        if (operation == null)
         {
             return Result.Fail(new OperationNotFound($"Could not find operation with id:{id}" ));
         }
+        
+        return Result.Ok(operation);
     }
 
     public async Task<Result<List<Operation>>> FindAllOperationsAsync()
