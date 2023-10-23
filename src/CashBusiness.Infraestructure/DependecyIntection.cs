@@ -16,7 +16,7 @@ public static class DependecyIntection
                 b => b.MigrationsAssembly("CashBusiness.Api")));
 
         services.AddScoped<IOperationRepository, OperationRepositoryImpl>();
-        services.AddScoped<IClientRepository, ClientRepositoryImpl>();
+        services.AddScoped<ICustomerRepository, CustomerRepositoryImpl>();
         
         return services;
 
