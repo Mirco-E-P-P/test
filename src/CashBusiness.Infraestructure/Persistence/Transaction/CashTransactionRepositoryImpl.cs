@@ -14,20 +14,10 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
     }
 
 
-    public async Task<CashTransaction> PersistCashTransaction(string clientId, string voucher, string operationId, double amount, string observation)
+    public async Task<CashTransaction> PersistCashTransaction(CashTransaction cashTransaction)
     {
-        var cashTransaction = new CashTransaction
-        {
-            ClientId = clientId, 
-            Voucher = voucher, 
-            OperationId = operationId, 
-            Amount = amount, 
-            Observation = observation
-        };
-
-        EntityEntry<CashTransaction> savedTransaction = _dbContext.Add(cashTransaction);
+        EntityEntry<CashTransaction> savedTransaction = _dbContext.CashTransactions.Add(cashTransaction);
         await _dbContext.SaveChangesAsync();
-
         return savedTransaction.Entity;
     }
 
