@@ -17,13 +17,6 @@ public class ClientCommandService: IClientCommandService
 
     public async Task<Result<Client>> RegisterClient(string name, string phoneNumber)
     {
-        Client existingClient = await _clientRepository.FindClientByName(name);
-        
-        if (existingClient!= null)
-        {
-            return Result.Fail(new ClientDuplicated($"Client with name {name} already exists"));
-        }
-        
         Client client = await _clientRepository.PersistedClient(name, phoneNumber);
         return Result.Ok(client);
     }
