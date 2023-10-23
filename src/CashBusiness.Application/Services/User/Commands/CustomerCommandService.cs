@@ -5,19 +5,19 @@ using FluentResults;
 
 namespace CashBusiness.Application.Services.User.Commands;
 
-public class ClientCommandService: IClientCommandService
+public class CustomerCommandService: ICustomerCommandService
 {
-    private readonly IClientRepository _clientRepository;
+    private readonly ICustomerRepository _customerRepository;
 
-    public ClientCommandService(IClientRepository clientRepository)
+    public CustomerCommandService(ICustomerRepository customerRepository)
     {
-        _clientRepository = clientRepository;
+        _customerRepository = customerRepository;
     }
 
 
     public async Task<Result<Customer>> RegisterClient(string name, string phoneNumber)
     {
-        Customer customer = await _clientRepository.PersistedClient(name, phoneNumber);
+        Customer customer = await _customerRepository.PersistedCustomer(name, phoneNumber);
         return Result.Ok(customer);
     }
     
