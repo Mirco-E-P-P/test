@@ -1,5 +1,6 @@
 ﻿using CashBusiness.Application.Services.User.Commands;
 using CashBusiness.Application.Services.User.Queries;
+using CashBusiness.Contracts.User;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
@@ -35,9 +36,10 @@ public class ClientController: ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> RegisterClient()
+    public async Task<IActionResult> RegisterClient(CreateClientDto createClientDto)
     {
-        return Ok();
+        Result<Client> clientResult = await _clientCommandService.RegisterClient(createClientDto.Name, createClientDto.PhoneNumber);
+        return Ok( clientResult.Value );
     }
 
 
