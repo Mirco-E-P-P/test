@@ -3,10 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-# Migration files
-
-src/CashBusiness.Api/Migrations/**
-src/CashBusiness.Api/Migrations/*
 # Sonar lint files
 
 .idea/**
@@ -521,27 +517,6 @@ src/CashBusiness.Contracts/obj/**
 src/CashBusiness.Domain/obj/**
 src/CashBusiness.Infraestructure/obj/Debug/net7.0/**
 
-/src/CashBusiness.Api/Migrations/20231018181152_concept_entiny_mapping.Designer.cs
-/src/CashBusiness.Api/Migrations/20231018181152_concept_entiny_mapping.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.Designer.cs
-/src/CashBusiness.Api/Migrations/20231017200902_concept_mapping_new_database.cs
-/src/CashBusiness.Api/Migrations/20231017200902_concept_mapping_new_database.Designer.cs
-/src/CashBusiness.Api/Migrations/20231018181152_concept_entiny_mapping.cs
-/src/CashBusiness.Api/Migrations/20231018181152_concept_entiny_mapping.Designer.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.Designer.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.Designer.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.Designer.cs
-/src/CashBusiness.Api/Migrations/20231018181619_add_db_context_from_infraestructure_layer.Designer.cs
-/src/CashBusiness.Api/Migrations/20231018181619_add_db_context_from_infraestructure_layer.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.cs
-/src/CashBusiness.Api/Migrations/20231017200620_concept_mapping.Designer.cs
-/src/CashBusiness.Api/Migrations/20231017200902_concept_mapping_new_database.cs
-/src/CashBusiness.Api/Migrations/20231017200902_concept_mapping_new_database.Designer.cs
-/src/CashBusiness.Api/Migrations/20231018181152_concept_entiny_mapping.cs
-/src/CashBusiness.Api/Migrations/20231018181152_concept_entiny_mapping.Designer.cs
-/src/CashBusiness.Api/Migrations/20231018181619_add_db_context_from_infraestructure_layer.cs
-/src/CashBusiness.Api/Migrations/20231018181619_add_db_context_from_infraestructure_layer.Designer.cs
+# Migration files
+src/CashBusiness.Api/Migrations/**
+src/CashBusiness.Api/Migrations/*
