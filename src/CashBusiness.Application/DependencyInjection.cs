@@ -1,4 +1,5 @@
 ﻿using CashBusiness.Application.Services.Transaction;
+using CashBusiness.Application.Services.Transaction.Commands;
 using CashBusiness.Application.Services.Transaction.Queries;
 using CashBusiness.Application.Services.User.Commands;
 using CashBusiness.Application.Services.User.Queries;
@@ -13,6 +14,9 @@ public static class DependencyInjection
         services.AddScoped<IOperationQueryService, OperationQueryService>();
         services.AddScoped<ICustomerCommandService, CustomerCommandService>();
         services.AddScoped<ICustomerQueryService, CustomerQueryService>();
+        
+        services.AddScoped<ICashTransactionCommandService, CashTransactionCommandService>();
+        
         return services;
     }
 }
