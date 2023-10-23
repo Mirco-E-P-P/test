@@ -5,37 +5,37 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CashBusiness.Infraestructure.Persistence.User;
 
-public class ClientRepositoryImpl: IClientRepository
+public class CustomerRepositoryImpl: IClientRepository
 {
     private readonly AppDbContext _context;
 
-    public ClientRepositoryImpl(AppDbContext context)
+    public CustomerRepositoryImpl(AppDbContext context)
     {
         _context = context;
     }
 
 
-    public async Task<Client> PersistedClient(string name, string phoneNumber)
+    public async Task<Customer> PersistedClient(string name, string phoneNumber)
     {
-        var client = new Client
+        var client = new Customer
         {
             Name = name,
             PhoneNumber = phoneNumber
         };
         
-        EntityEntry<Client> clientSaved = _context.Clients.Add(client);
+        EntityEntry<Customer> clientSaved = _context.Clients.Add(client);
         
         await _context.SaveChangesAsync();
         
         return clientSaved.Entity;
     }
 
-    public async Task<Client> FindClientById(string id)
+    public async Task<Customer> FindClientById(string id)
     {
         try
         {
-            Client client = await _context.Clients.Where(client => client.Id.ToString() == id).FirstAsync();
-            return client;
+            Customer customer = await _context.Clients.Where(client => client.Id.ToString() == id).FirstAsync();
+            return customer;
             
         }
         catch (Exception e)
@@ -45,17 +45,17 @@ public class ClientRepositoryImpl: IClientRepository
         
     }
 
-    public async Task<List<Client>> FindAllClients()
+    public async Task<List<Customer>> FindAllClients()
     {
         return await _context.Clients.ToListAsync();
     }
 
-    public async Task<Client> FindClientByName(string name)
+    public async Task<Customer> FindClientByName(string name)
     {
         try
         {
-            Client client = await _context.Clients.Where(client => client.Name == name).FirstAsync();
-            return client;
+            Customer customer = await _context.Clients.Where(client => client.Name == name).FirstAsync();
+            return customer;
         }
         catch (Exception e)
         {
