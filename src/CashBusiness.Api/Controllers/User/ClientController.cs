@@ -34,8 +34,13 @@ public class ClientController: ControllerBase
         return Ok(clientResult.Value);
     }
 
+    [HttpPost]
+    public async Task<IActionResult> RegisterClient()
+    {
+        return Ok();
+    }
 
 
-    
+
 
 }
