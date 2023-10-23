@@ -12,9 +12,6 @@ public class OperationMappingConfig: IRegister
             .Map(destination => destination.Id, source => source.Id.ToString())
             .Map(destination => destination.Name, source => source.Name );
         
-        config.NewConfig<List<OperationVo>, List<Operation>>()
-           .Map(
-               destination => destination, 
-               source => source);
+
     }
 }
