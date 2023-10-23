@@ -40,6 +40,23 @@ public class OperationServiceTests
         Assert.Single(result.Value);
     }
 
+    [Fact]
+    public async Task GetOperationAsync_NoRegisteredOperation_shouldReturnResultFail()
+    {
+        AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
+        var repository = new OperationRepositoryImpl(dbContext);
+        var service = new OperationQueryService(repository);
+        
+        Guid nonexistentId = Guid.NewGuid();
+        
+        Result<Operation> operationsResult = await service.FindOperationByIdAsync(nonexistentId.ToString());
+        
+        Assert.True(operationsResult.IsFailed); 
+        
+    }
+    
+    
+    
 
     [Fact]
     public async Task GetOperationAsync_TwoOperationsInDatabase_shouldReturnTwoRecords()
@@ -81,20 +98,5 @@ public class OperationServiceTests
     }
     
     
-    [Fact]
-    public async Task GetOperationAsync_InExistentOperationInDatabase_shouldReturnResultFail()
-    {
-        AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
-        Guid nonexistentId = Guid.NewGuid();
-        
-        var repository = new OperationRepositoryImpl(dbContext);
-        var service = new OperationQueryService(repository);
-        
-        Result<Operation> operationsResult = await service.FindOperationByIdAsync(nonexistentId.ToString());
-       
-  
-        Assert.True(operationsResult.IsFailed); 
 
-        
-    }
 }
