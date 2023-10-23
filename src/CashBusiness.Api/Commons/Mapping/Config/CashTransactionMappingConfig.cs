@@ -16,5 +16,12 @@ public class CashTransactionMappingConfig: IRegister
             .Map(dest => dest.Voucher, src => src.Voucher)
             .Map(dest => dest.OperationId, src => src.OperationId);
         
+        config.NewConfig<CashTransaction, CashTransactionVo>()
+            .Map(dest => dest.Id, src => src.Id)
+            .Map(dest => dest.CreatedAt, src => src.CreatedAt)
+            .Map(dest => dest.Observation, src => src.Observation)
+            .Map(dest => dest.OperationId, src => src.OperationId)
+            .Map(dest => dest.Voucher, src => src.Voucher)
+            .Map(dest => dest.ClientId, src => src.ClientId);
     }
 }
