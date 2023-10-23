@@ -1,4 +1,5 @@
 using CashBusiness.Application.Common.Persistence;
+using CashBusiness.Application.Common.Persistence.Transaction;
 using CashBusiness.Application.Common.Persistence.user;
 using Microsoft.EntityFrameworkCore;
 using CashBusiness.Infraestructure.Persistence;
@@ -17,6 +18,7 @@ public static class DependecyIntection
 
         services.AddScoped<IOperationRepository, OperationRepositoryImpl>();
         services.AddScoped<ICustomerRepository, CustomerRepositoryImpl>();
+        services.AddScoped<ICashTransactionRepository, CashTransactionRepositoryImpl>();
         
         return services;
 
