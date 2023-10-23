@@ -12,6 +12,5 @@ public class CustomerMappingConfig: IRegister
             .Map(destination => destination.Id, source => source.Id.ToString())
             .Map(destination => destination.Name, source => source.Name)
             .Map(destination => destination.PhoneNumber, source => source.PhoneNumber);
-        
     }
 }
