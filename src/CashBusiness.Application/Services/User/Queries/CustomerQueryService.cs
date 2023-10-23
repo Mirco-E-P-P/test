@@ -5,29 +5,29 @@ using FluentResults;
 
 namespace CashBusiness.Application.Services.User.Queries;
 
-public class ClientQueryService: IClientQueryService
+public class CustomerQueryService: ICustomerQueryService
 {
     private readonly ICustomerRepository _customerRepository;
 
-    public ClientQueryService(ICustomerRepository customerRepository)
+    public CustomerQueryService(ICustomerRepository customerRepository)
     {
         _customerRepository = customerRepository;
     }
 
-    public async Task<Result<Customer>> FindClientById(string id)
+    public async Task<Result<Customer>> FindCustomerById(string id)
     {
-        Customer customer = await _customerRepository.FindClientById(id);
+        Customer customer = await _customerRepository.FindCustomerById(id);
 
         if (customer == null)
         {
-            return Result.Fail(new NotFoundClient($"No such client found for id: {id}" ));
+            return Result.Fail(new NotFoundCustomer($"No such customer found for id: {id}" ));
         }
         return Result.Ok(customer);
     }
 
-    public async Task<Result<List<Customer>>> FindAllClients()
+    public async Task<Result<List<Customer>>> FindAllCustomers()
     {
-        return Result.Ok(await _customerRepository.FindAllClients());
+        return Result.Ok(await _customerRepository.FindAllCustomers());
     }
     
 }
