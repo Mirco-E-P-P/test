@@ -5,7 +5,7 @@ namespace CashBusiness.Application.Services.Transaction.Commands;
 
 public interface ICashTransactionCommandService
 {
-    public Result<CashTransaction> PersistCashTransaction(string clientId, string voucher, string operationId,
+    public Task<Result<CashTransaction>> PersistCashTransaction(string clientId, string voucher, string operationId,
         double amount, string observation);
     
 }
