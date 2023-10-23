@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CashBusiness.Api.Controllers.User;
 
 [ApiController]
-[Route("client")]
+[Route("customer")]
 public class Customer: ControllerBase
 {
     private readonly ICustomerCommandService _customerCommandService;
