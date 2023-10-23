@@ -42,6 +42,14 @@ public class Customer: ControllerBase
         return Ok( customerResult.Value );
     }
 
+    [HttpGet]
+    public async Task<IActionResult> FinAllCustomer()
+    {
+        Result<List<Customer>> customersResult = await _customerQueryService.FindAllCustomers();
+        return Ok(customersResult.Value);
+    }
+
+    
 
 
 
