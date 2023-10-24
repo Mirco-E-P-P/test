@@ -146,5 +146,47 @@ public class CashTransactionServiceTests
     }
 
     
+    [Fact]
+    public async Task CashTransactionCommandService_PersistTransactionWithNoRegisteredCustomer_ShouldReturnNotFoundCustomerError()
+    {
+        // Arrange
+        AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
+        ICashTransactionRepository cashTransactionRepository = new CashTransactionRepositoryImpl(dbContext);
+        ICashTransactionCommandService cashTransactionCommandService = new CashTransactionCommandService(cashTransactionRepository);
+        
+        
+        Guid noRegisteredCustomerGuid = Guid.NewGuid();
+        
+        Guid newOperationGuid = Guid.NewGuid();
+        Operation newOperation = new Operation
+        {
+            Id = newOperationGuid,
+            Name = "Test Operation",
+        };
+        
+        dbContext.Operations.Add(newOperation);
+        await dbContext.SaveChangesAsync();
+        
+        Guid newTransactionId = new Guid("58C8311B-244E-40D4-92F2-283F01B581A9");
+        CashTransaction newCashTransaction = new CashTransaction()
+        {
+            Id = newTransactionId,
+            CustomerId = noRegisteredCustomerGuid,
+            Voucher = "000000001",
+            OperationId = newOperationGuid,
+            Amount = 999.15,
+            Observation = "None"
+        };
+        
+        // Act
+        Result <CashTransaction> result = await cashTransactionCommandService.PersistCashTransaction(newCashTransaction);
+        
+        
+        // Assert
+        Assert.True(result.IsSuccess);
+
+    }
+    
+    
     
 }
