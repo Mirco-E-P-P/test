@@ -37,8 +37,8 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
         }
     }
 
-    public Task<List<CashTransaction>> FindAllTransactions()
+    public async Task<List<CashTransaction>> FindAllTransactions()
     {
-        throw new NotImplementedException();
+        return await _dbContext.CashTransactions.ToListAsync();
     }
 }
