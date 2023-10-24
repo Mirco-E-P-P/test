@@ -2,8 +2,8 @@ namespace CashBusiness.Domain.Entity;
 
 public class CashTransaction
 {
-    public int Index;
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Index { get; set; }
+    public Guid Id { get; set; }
    
     public Guid CustomerId { get; set; }
     public Customer Customer { get; set; } = default!;
