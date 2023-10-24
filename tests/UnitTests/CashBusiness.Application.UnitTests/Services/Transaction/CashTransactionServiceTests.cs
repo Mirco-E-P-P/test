@@ -1,3 +1,4 @@
+using System.Net;
 using CashBusiness.Application.Common.Persistence.Transaction;
 using CashBusiness.Application.Common.Persistence.user;
 using CashBusiness.Application.Services.Transaction.Queries;
@@ -43,7 +44,26 @@ public class CashTransactionServiceTests
         Assert.True(result.IsSuccess);
         Assert.Equal(newTransactionId, result.Value.Id);
     }
+    
+    [Fact]
+    public async Task CashTransactionQueryService_GetNoRegisteredTransactionById_ShouldReturnNotFoundError()
+    {
+        // Arrange
+        AppDbContext dbContext = InMemoryApplicationDatabase.GetInstance().GetApplicationDbContext();
+        ICashTransactionRepository cashTransactionRepository = new CashTransactionRepositoryImpl(dbContext);
+        ICashTransactionQueryService cashTransactionQueryService = new CashTransactionQueryService(cashTransactionRepository);
+        
+        Guid noRegisteredTransactionId = new Guid("58C8311B-244E-40D4-92F2-283F01B581A9");
 
+        
+        // Act
+        Result <CashTransaction> result = await cashTransactionQueryService.GetTransactionById(noRegisteredTransactionId);
+        
+        // Assert
+        Assert.True(result.IsFailed);
+        Assert.Equal(result.Errors[0].Metadata["statusCode"], HttpStatusCode.NotFound);
+    }
+    
 
 
 
