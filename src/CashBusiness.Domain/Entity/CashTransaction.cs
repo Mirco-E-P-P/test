@@ -6,10 +6,12 @@ public class CashTransaction
     public Guid Id { get; set; } = Guid.NewGuid();
    
     public Guid CustomerId { get; set; }
+    public Customer Customer { get; set; } = default!;
     
+    public Guid OperationId { get; set; }
+    public Operation Operation { get; set; } = default!;
     
     public string Voucher { get; set; } = String.Empty;
-    public string OperationId { get; set; } = String.Empty;
     public double Amount { get; set; } = 0.0;
     public string Observation { get; set; } = String.Empty;
 
