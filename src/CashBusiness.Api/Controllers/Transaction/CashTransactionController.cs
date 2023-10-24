@@ -88,9 +88,52 @@ public class CashTransactionController: ControllerBase
         Result<CashTransaction> transactionResult = await _cashTransactionCommandService.PersistCashTransaction(cashTransaction);
         return Ok(_mapper.Map<CashTransactionVo>(transactionResult.Value));
     }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateCashTransaction(UpdateCashTransactionDto dto)
+    {
+        Result <Customer> findCustomerResult = await _customerQueryService.FindCustomerById(dto.CustomerId);
+        
+        if (findCustomerResult.IsFailed)
+        {
+            IError firstCustomerResultErrorError = findCustomerResult.Errors[0];
+            return Problem(title: firstCustomerResultErrorError.Message, statusCode:(int) firstCustomerResultErrorError.Metadata["statusCode"]);
+        }
+
+        Result<Operation> findOperationResult = await _operationQueryService.FindOperationByIdAsync(dto.OperationId);
+
+        if (findOperationResult.IsFailed)
+        {
+            IError firstOperationResultError = findOperationResult.Errors[0];
+            return Problem(title: firstOperationResultError.Message, statusCode:(int) firstOperationResultError.Metadata["statusCode"]);
+        }
+
+        //ToDo: verify if the transaction id is not registered
+        // Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionById(dto.Id);
+        //
+        // if (findCashTransactionResult.IsFailed)
+        // {
+        //     IError firstError = findCashTransactionResult.Errors[0];
+        //     return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
+        // }
+        
+        CashTransaction cashTransactionUpdated = _mapper.Map<CashTransaction>(dto);
+        
+        
+        // findCashTransactionResult.Value.CustomerId = dto.CustomerId;
+        // findCashTransactionResult.Value.OperationId = dto.OperationId;
+        // findCashTransactionResult.Value.Amount = dto.Amount;
+        // findCashTransactionResult.Value.Voucher = dto.Voucher;
+        // findCashTransactionResult.Value.Observation = dto.Observation;
+        
+        
+        Result<CashTransaction> transactionResult = await _cashTransactionCommandService.UpdateCashTransaction(cashTransactionUpdated);
+        return Ok(_mapper.Map<CashTransactionVo>(transactionResult.Value));
+    }
+
     
     
     
-    
-    
+
+
 }
