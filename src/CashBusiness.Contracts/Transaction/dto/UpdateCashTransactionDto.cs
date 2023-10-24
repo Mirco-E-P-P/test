@@ -2,6 +2,7 @@ namespace CashBusiness.Contracts.Transaction.dto;
 
 public class UpdateCashTransactionDto
 {
+     public Guid Id { get; set; } 
      public Guid CustomerId { get; set; }
      public Guid OperationId { get; set; }
      public string Voucher { get; set; } = String.Empty;
