@@ -27,8 +27,8 @@ public class CashTransactionQueryService: ICashTransactionQueryService
         return Result.Ok(cashTransaction);
     }
 
-    public Task<Result<List<CashTransaction>>> GetAllTransactions()
+    public async Task<Result<List<CashTransaction>>> GetAllTransactions()
     {
-        throw new NotImplementedException();
+        return Result.Ok( await _cashTransactionRepository.FindAllTransactions());
     }
 }
