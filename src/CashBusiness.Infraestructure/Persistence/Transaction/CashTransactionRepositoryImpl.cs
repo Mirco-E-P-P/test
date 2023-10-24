@@ -1,5 +1,6 @@
 ﻿using CashBusiness.Application.Common.Persistence.Transaction;
 using CashBusiness.Domain.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CashBusiness.Infraestructure.Persistence.Transaction;
@@ -21,9 +22,19 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
         return savedTransaction.Entity;
     }
 
-    public Task<CashTransaction> FindCashTransactionById()
+    public async Task<CashTransaction> FindCashTransactionById(Guid id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            CashTransaction findTransaction = await _dbContext.CashTransactions.Where(cashTransaction => cashTransaction.Id == id)
+                .FirstAsync();
+            
+            return findTransaction;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     public Task<List<CashTransaction>> FindAllTransactions()
