@@ -14,7 +14,7 @@ public class CustomerQueryService: ICustomerQueryService
         _customerRepository = customerRepository;
     }
 
-    public async Task<Result<Customer>> FindCustomerById(string id)
+    public async Task<Result<Customer>> FindCustomerById(Guid id)
     {
         Customer customer = await _customerRepository.FindCustomerById(id);
 
