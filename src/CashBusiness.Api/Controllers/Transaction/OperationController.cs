@@ -30,7 +30,7 @@ public class OperationController: ControllerBase
     }
     
     [HttpGet("{id}")]
-    public async Task<IActionResult> FindOperationById(string id)
+    public async Task<IActionResult> FindOperationById(Guid id)
     {
         
         Result<Operation> result = await _operationQueryService.FindOperationByIdAsync(id);
