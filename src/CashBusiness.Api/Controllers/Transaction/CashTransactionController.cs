@@ -35,6 +35,13 @@ public class CashTransactionController: ControllerBase
         _operationQueryService = operationQueryService;
         _mapper = mapper;
     }
+
+    [HttpGet]
+    public async Task<IActionResult> FindAllCashTransactions()
+    {
+        Result<List<CashTransaction>> result = await _cashTransactionQueryService.GetAllTransactions();
+        return Ok(_mapper.Map<List<CashTransactionVo>>(result.Value));
+    }
     
     [HttpPost]
     public async Task<IActionResult> RegisterCashTransaction(RegisterCashTransactionDto dto)
@@ -61,8 +68,7 @@ public class CashTransactionController: ControllerBase
         {
             return Problem(title: "The transaction id is already in use.", statusCode: (int)HttpStatusCode.Conflict);
         }
-
-
+        
         CashTransaction cashTransaction = _mapper.Map<CashTransaction>(dto);
         Result<CashTransaction> transactionResult = await _cashTransactionCommandService.PersistCashTransaction(cashTransaction);
         return Ok(_mapper.Map<CashTransactionVo>(transactionResult.Value));
