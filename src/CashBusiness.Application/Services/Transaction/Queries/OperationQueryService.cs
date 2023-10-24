@@ -14,7 +14,7 @@ public class OperationQueryService: IOperationQueryService
         _operationRepository = operationRepository;
     }
     
-    public async Task<Result<Operation>> FindOperationByIdAsync(string id)
+    public async Task<Result<Operation>> FindOperationByIdAsync(Guid id)
     {
         Operation operation = await _operationRepository.findById(id);
         
