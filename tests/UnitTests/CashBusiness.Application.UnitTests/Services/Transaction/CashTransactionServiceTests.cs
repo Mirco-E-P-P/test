@@ -1,7 +1,10 @@
 using System.Net;
+using CashBusiness.Application.Common.Persistence;
 using CashBusiness.Application.Common.Persistence.Transaction;
 using CashBusiness.Application.Common.Persistence.user;
+using CashBusiness.Application.Services.Transaction.Commands;
 using CashBusiness.Application.Services.Transaction.Queries;
+using CashBusiness.Application.Services.User.Commands;
 using CashBusiness.Application.Services.User.Queries;
 using CashBusiness.Application.UnitTests.Services.Transaction.ServiceUtils;
 using CashBusiness.Domain.Entity;
@@ -22,14 +25,36 @@ public class CashTransactionServiceTests
         ICashTransactionRepository cashTransactionRepository = new CashTransactionRepositoryImpl(dbContext);
         ICashTransactionQueryService cashTransactionQueryService = new CashTransactionQueryService(cashTransactionRepository);
         
+        
+        Guid newOperationGuid = Guid.NewGuid();
+        Guid newCustomerGuid = Guid.NewGuid();
+        
+        Operation newOperation = new Operation
+        {
+            Id = newOperationGuid,
+            Name = "Test Operation",
+        };
+
+        Customer newCustomer = new Customer
+        {
+            Id = newCustomerGuid,
+            Name = "Test Customer",
+            PhoneNumber = "+591 65656565"
+        };
+
+        dbContext.Customers.Add(newCustomer);
+        dbContext.Operations.Add(newOperation);
+        await dbContext.SaveChangesAsync();
+        
+        
         Guid newTransactionId = new Guid("58C8311B-244E-40D4-92F2-283F01B581A9");
         
         CashTransaction newTransaction = new CashTransaction()
         {
             Id = newTransactionId,
-            CustomerId = new Guid("25d65bb9-de48-472e-8feb-c71cb59f40ac"),
+            CustomerId = newCustomerGuid,
             Voucher = "000000001",
-            OperationId = new Guid("9C30807B-5188-4348-B89F-69854029913C"),
+            OperationId = newOperationGuid,
             Amount = 999.15,
             Observation = "None"
         };
@@ -63,15 +88,5 @@ public class CashTransactionServiceTests
         Assert.True(result.IsFailed);
         Assert.Equal(result.Errors[0].Metadata["statusCode"], HttpStatusCode.NotFound);
     }
-    
-
-
-
-
-
-
-
-
-
 
 }
