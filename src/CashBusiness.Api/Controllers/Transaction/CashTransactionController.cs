@@ -42,7 +42,22 @@ public class CashTransactionController: ControllerBase
         Result<List<CashTransaction>> result = await _cashTransactionQueryService.GetAllTransactions();
         return Ok(_mapper.Map<List<CashTransactionVo>>(result.Value));
     }
-    
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> FindTransactionById(Guid id)
+    {
+        Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionById(id);
+
+        if (cashTransactionResult.IsFailed)
+        {
+            IError firstError = cashTransactionResult.Errors[0];
+            return Problem(title:firstError.Message, statusCode: (int) firstError.Metadata["statusCode"] );
+        }
+
+        return Ok(_mapper.Map<CashTransactionVo>(cashTransactionResult.Value));
+    }
+
+
     [HttpPost]
     public async Task<IActionResult> RegisterCashTransaction(RegisterCashTransactionDto dto)
     {
