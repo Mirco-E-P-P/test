@@ -18,4 +18,9 @@ public class CashTransactionCommandService: ICashTransactionCommandService
         CashTransaction savedTransaction = await _repository.PersistCashTransaction(cashTransaction);
         return Result.Ok(savedTransaction);
     }
+
+    public async Task<Result<CashTransaction>> UpdateCashTransaction(CashTransaction cashTransaction)
+    {
+        return Result.Ok( await _repository.UpdateCashTransaction(cashTransaction));
+    }
 }
