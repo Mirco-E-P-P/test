@@ -41,4 +41,9 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
     {
         return await _dbContext.CashTransactions.ToListAsync();
     }
+
+    public Task<CashTransaction> UpdateCashTransaction(CashTransaction cashTransaction)
+    {
+        throw new NotImplementedException();
+    }
 }

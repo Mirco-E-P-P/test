@@ -8,4 +8,5 @@ public interface ICashTransactionRepository
     public Task<CashTransaction> PersistCashTransaction(CashTransaction cashTransaction);
     public Task<CashTransaction> FindCashTransactionById(Guid id);
     public Task<List<CashTransaction>> FindAllTransactions();
+    public Task<CashTransaction> UpdateCashTransaction(CashTransaction cashTransaction);
 }
