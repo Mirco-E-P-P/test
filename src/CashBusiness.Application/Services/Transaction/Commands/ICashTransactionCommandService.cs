@@ -8,4 +8,5 @@ public interface ICashTransactionCommandService
     public Task<Result<CashTransaction>> PersistCashTransaction(CashTransaction cashTransaction);
 
     public Task<Result<CashTransaction>> UpdateCashTransaction(CashTransaction cashTransaction);
+    public Task<Result<int>> DeleteCashTransaction(Guid id);
 }
