@@ -30,11 +30,11 @@ public class CustomerRepositoryImpl: ICustomerRepository
         return customerSaved.Entity;
     }
 
-    public async Task<Customer> FindCustomerById(string id)
+    public async Task<Customer> FindCustomerById(Guid id)
     {
         try
         {
-            Customer customer = await _context.Customers.Where(customer => customer.Id.ToString() == id).FirstAsync();
+            Customer customer = await _context.Customers.Where(customer => customer.Id == id).FirstAsync();
             return customer;
             
         }
