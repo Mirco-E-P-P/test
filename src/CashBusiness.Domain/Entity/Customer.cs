@@ -6,4 +6,6 @@ public class Customer
     public int Index { get; set; }
     public string Name { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
+    
+    public List<CashTransaction> CashTransactions { get; set; } = new List<CashTransaction>();
 }
