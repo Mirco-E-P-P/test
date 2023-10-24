@@ -17,7 +17,7 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
 
     public async Task<CashTransaction> PersistCashTransaction(CashTransaction cashTransaction)
     {
-        EntityEntry<CashTransaction> savedTransaction = _dbContext.CashTransactions.Add(cashTransaction);
+        EntityEntry<CashTransaction> savedTransaction = await _dbContext.CashTransactions.AddAsync(cashTransaction);
         await _dbContext.SaveChangesAsync();
         return savedTransaction.Entity;
     }
