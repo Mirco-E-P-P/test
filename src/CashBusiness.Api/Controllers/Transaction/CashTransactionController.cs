@@ -1,4 +1,5 @@
-﻿using CashBusiness.Application.Services.Transaction.Commands;
+﻿using System.Net;
+using CashBusiness.Application.Services.Transaction.Commands;
 using CashBusiness.Application.Services.Transaction.Queries;
 using CashBusiness.Application.Services.User.Queries;
 using CashBusiness.Contracts.Transaction.dto;
@@ -16,17 +17,20 @@ namespace CashBusiness.Api.Controllers.Transaction;
 public class CashTransactionController: ControllerBase
 {
     private readonly ICashTransactionCommandService _cashTransactionCommandService;
+    private readonly ICashTransactionQueryService _cashTransactionQueryService;
     private readonly ICustomerQueryService _customerQueryService;
     private readonly IOperationQueryService _operationQueryService;
     private readonly IMapper _mapper;
 
     public CashTransactionController(
         ICashTransactionCommandService cashTransactionCommandService, 
+        ICashTransactionQueryService cashTransactionQueryService,
         ICustomerQueryService customerQueryService, 
         IOperationQueryService operationQueryService,
         IMapper mapper)
     {
         _cashTransactionCommandService = cashTransactionCommandService;
+        _cashTransactionQueryService = cashTransactionQueryService;
         _customerQueryService = customerQueryService;
         _operationQueryService = operationQueryService;
         _mapper = mapper;
@@ -49,6 +53,13 @@ public class CashTransactionController: ControllerBase
         {
             IError firstOperationResultError = operationResult.Errors[0];
             return Problem(title: firstOperationResultError.Message, statusCode:(int) firstOperationResultError.Metadata["statusCode"]);
+        }
+
+        Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionById(dto.Id);
+
+        if (cashTransactionResult.IsSuccess)
+        {
+            return Problem(title: "The transaction id is already in use.", statusCode: (int)HttpStatusCode.Conflict);
         }
 
 
