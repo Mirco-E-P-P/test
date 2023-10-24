@@ -2,6 +2,7 @@
 
 public class RegisterCashTransactionDto
 {
+    public Guid Id { get; set; }
     public Guid CustomerId { get; set; }
     public string Voucher { get; set; } = String.Empty;
     public string OperationId { get; set; } = String.Empty;
