@@ -43,7 +43,7 @@ public class CashTransactionController: ControllerBase
         return Ok(_mapper.Map<List<CashTransactionVo>>(result.Value));
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> FindTransactionById(Guid id)
     {
         Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionById(id);
