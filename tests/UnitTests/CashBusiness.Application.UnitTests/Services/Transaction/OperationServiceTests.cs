@@ -49,7 +49,7 @@ public class OperationServiceTests
         
         Guid nonexistentId = Guid.NewGuid();
         
-        Result<Operation> operationsResult = await service.FindOperationByIdAsync(nonexistentId.ToString());
+        Result<Operation> operationsResult = await service.FindOperationByIdAsync(nonexistentId);
         
         Assert.True(operationsResult.IsFailed); 
         
@@ -89,7 +89,7 @@ public class OperationServiceTests
         var repository = new OperationRepositoryImpl(dbContext);
         var service = new OperationQueryService(repository);
         
-        Result<Operation> operationsResult = await service.FindOperationByIdAsync(registeredOperationId.ToString());
+        Result<Operation> operationsResult = await service.FindOperationByIdAsync(registeredOperationId);
        
   
         Assert.Equal(registeredOperationId, operationsResult.Value.Id); 
