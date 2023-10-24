@@ -18,11 +18,11 @@ public class OperationRepositoryImpl :IOperationRepository
         return await _context.Operations.ToListAsync();
     }
 
-    public async Task<Operation> findById(string id)
+    public async Task<Operation> findById(Guid id)
     {
         try
         {
-          Operation operation = await _context.Operations.Where(operation => operation.Id.ToString() == id).FirstAsync();
+          Operation operation = await _context.Operations.Where(operation => operation.Id == id).FirstAsync();
           return operation;
         }
         catch (Exception e)
