@@ -10,6 +10,7 @@ public class CashTransactionMappingConfig: IRegister
     public void Register(TypeAdapterConfig config)
     {
         config.NewConfig<RegisterCashTransactionDto, CashTransaction>()
+            .Map(dest => dest.Id, src => src.Id)
             .Map(dest => dest.CustomerId, src => src.CustomerId)
             .Map(dest => dest.Amount, src => src.Amount)
             .Map(dest => dest.Observation, src => src.Observation)
