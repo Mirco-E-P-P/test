@@ -52,5 +52,10 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
         await _dbContext.SaveChangesAsync();
         return cashTransaction;
     }
-    
+
+    public async Task<int> DeleteCashTransactionById(Guid id)
+    {
+        int affectedRows =  await _dbContext.CashTransactions.Where(cashTransaction => cashTransaction.Id == id).ExecuteDeleteAsync();
+        return affectedRows;
+    }
 }
