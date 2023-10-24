@@ -1,4 +1,5 @@
-﻿using CashBusiness.Application.Common.Persistence.Transaction;
+﻿using CashBusiness.Application.Common.Errors.Transaction;
+using CashBusiness.Application.Common.Persistence.Transaction;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 
@@ -22,5 +23,16 @@ public class CashTransactionCommandService: ICashTransactionCommandService
     public async Task<Result<CashTransaction>> UpdateCashTransaction(CashTransaction cashTransaction)
     {
         return Result.Ok( await _repository.UpdateCashTransaction(cashTransaction));
+    }
+
+    public async Task<Result<int>> DeleteCashTransaction(Guid id)
+    {
+        int deletedRows = await _repository.DeleteCashTransactionById(id);
+        if (deletedRows == 0)
+        {
+            return Result.Fail(new NotFoundCashTransaction($"There is not exist a cash transaction with id: {id}"));
+        }
+        
+        return Result.Ok(deletedRows);
     }
 }
