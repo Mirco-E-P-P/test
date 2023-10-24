@@ -44,7 +44,13 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
 
     public async Task<CashTransaction> UpdateCashTransaction(CashTransaction cashTransaction)
     {
-        return await PersistCashTransaction(cashTransaction);
+        _dbContext.Update(cashTransaction);
+        _dbContext.Entry(cashTransaction).Property(c => c.Index).IsModified = false;
+        _dbContext.Entry(cashTransaction).Property(c => c.CreatedAt).IsModified = false;
+        _dbContext.Entry(cashTransaction).Property(c => c.UpdatedAt).IsModified = false;
+        
+        await _dbContext.SaveChangesAsync();
+        return cashTransaction;
     }
     
 }
