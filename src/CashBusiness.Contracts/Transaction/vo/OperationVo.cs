@@ -2,6 +2,6 @@
 
 public class OperationVo
 {
-    public String Id { get; set; } = String.Empty;
+    public Guid Id { get; set; }
     public string Name { get; set; } = String.Empty;
 }
