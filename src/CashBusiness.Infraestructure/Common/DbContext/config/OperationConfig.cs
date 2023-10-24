@@ -8,7 +8,9 @@ public class OperationConfig: IEntityTypeConfiguration<Operation>
 {
     public void Configure(EntityTypeBuilder<Operation> builder)
     {
-        builder.HasKey(nameof(Operation.Index), nameof(Operation.Id));
+        builder.HasKey(operation => operation.Id).IsClustered(false);
+        
+        builder.HasIndex(operation => operation.Index).IsUnique().IsClustered();
         builder.Property(operation => operation.Index).ValueGeneratedOnAdd();
     }
 }
