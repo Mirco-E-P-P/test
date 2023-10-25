@@ -15,7 +15,7 @@ public class CustomerRepositoryImpl: ICustomerRepository
     }
 
 
-    public async Task<Customer> PersistedCustomer(string name, string phoneNumber)
+    public async Task<Customer> PersistedCustomerAsync(string name, string phoneNumber)
     {
         var customer = new Customer
         {
@@ -30,7 +30,7 @@ public class CustomerRepositoryImpl: ICustomerRepository
         return customerSaved.Entity;
     }
 
-    public async Task<Customer> FindCustomerById(Guid id)
+    public async Task<Customer> FindCustomerByIdAsync(Guid id)
     {
         try
         {
@@ -45,12 +45,12 @@ public class CustomerRepositoryImpl: ICustomerRepository
         
     }
 
-    public async Task<List<Customer>> FindAllCustomers()
+    public async Task<List<Customer>> FindAllCustomersAsync()
     {
         return await _context.Customers.ToListAsync();
     }
 
-    public async Task<Customer> FindCustomerByName(string name)
+    public async Task<Customer> FindCustomerByNameAsync(string name)
     {
         try
         {

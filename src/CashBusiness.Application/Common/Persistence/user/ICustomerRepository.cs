@@ -4,9 +4,9 @@ namespace CashBusiness.Application.Common.Persistence.user;
 
 public interface ICustomerRepository
 {
-    public Task<Customer> PersistedCustomer(string name, string phoneNumber);
-    public Task<Customer> FindCustomerById(Guid id);
-    public Task<List<Customer>> FindAllCustomers();
-    public Task<Customer> FindCustomerByName(string name);
+    public Task<Customer> PersistedCustomerAsync(string name, string phoneNumber);
+    public Task<Customer> FindCustomerByIdAsync(Guid id);
+    public Task<List<Customer>> FindAllCustomersAsync();
+    public Task<Customer> FindCustomerByNameAsync(string name);
 
 }
