@@ -123,5 +123,22 @@ public class CashTransactionController: ControllerBase
         Result<CashTransaction> transactionResult = await _cashTransactionCommandService.UpdateCashTransaction(cashTransactionUpdated);
         return Ok(_mapper.Map<CashTransactionVo>(transactionResult.Value));
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteCashTransaction(Guid id)
+    {
+        Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionById(id);
+
+        if (findCashTransactionResult.IsFailed)
+        {
+            IError firstError = findCashTransactionResult.Errors[0];
+            return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
+        }
+        
+        Result<int> deleteCashTransactionResult = await _cashTransactionCommandService.DeleteCashTransaction(id);
+        return Ok($" {deleteCashTransactionResult.Value} rows removed successfully ");    
+    }
     
+
+
 }
