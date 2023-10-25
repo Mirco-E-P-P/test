@@ -1,8 +1,8 @@
-﻿using CashBusiness.Application.Services.Transaction;
+﻿using CashBusiness.Application.Services.Customer.Commands;
+using CashBusiness.Application.Services.Customer.Queries;
+using CashBusiness.Application.Services.Transaction;
 using CashBusiness.Application.Services.Transaction.Commands;
 using CashBusiness.Application.Services.Transaction.Queries;
-using CashBusiness.Application.Services.User.Commands;
-using CashBusiness.Application.Services.User.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CashBusiness.Application;
