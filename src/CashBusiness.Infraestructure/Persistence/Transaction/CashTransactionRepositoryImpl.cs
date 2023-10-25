@@ -27,7 +27,7 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
         try
         {
             CashTransaction findTransaction = await _dbContext.CashTransactions.Where(cashTransaction => cashTransaction.Id == id)
-                .FirstAsync();
+                .AsNoTracking().FirstAsync();
             
             return findTransaction;
         }
