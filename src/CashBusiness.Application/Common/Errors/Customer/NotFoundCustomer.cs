@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using FluentResults;
 
-namespace CashBusiness.Application.Common.Errors.User;
+namespace CashBusiness.Application.Common.Errors.Customer;
 
 public class NotFoundCustomer: IError
 {
