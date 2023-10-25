@@ -13,12 +13,12 @@ public class OperationRepositoryImpl :IOperationRepository
         _context = context;
     }
     
-    public async Task<List<Operation>> findAll()
+    public async Task<List<Operation>> FindAllOperationsAsync()
     {
         return await _context.Operations.ToListAsync();
     }
 
-    public async Task<Operation> findById(Guid id)
+    public async Task<Operation> FindOperationByIdAsync(Guid id)
     {
         try
         {

@@ -4,7 +4,7 @@ namespace CashBusiness.Application.Common.Persistence;
 
 public interface IOperationRepository
 {
-    public Task<List<Operation>> findAll();
-    public Task<Operation> findById(Guid id);
+    public Task<List<Operation>> FindAllOperationsAsync();
+    public Task<Operation> FindOperationByIdAsync(Guid id);
     
 }

@@ -16,7 +16,7 @@ public class OperationQueryService: IOperationQueryService
     
     public async Task<Result<Operation>> FindOperationByIdAsync(Guid id)
     {
-        Operation operation = await _operationRepository.findById(id);
+        Operation operation = await _operationRepository.FindOperationByIdAsync(id);
         
         if (operation == null)
         {
@@ -28,6 +28,6 @@ public class OperationQueryService: IOperationQueryService
 
     public async Task<Result<List<Operation>>> FindAllOperationsAsync()
     {
-        return Result.Ok(await _operationRepository.findAll());
+        return Result.Ok(await _operationRepository.FindAllOperationsAsync());
     }
 }
