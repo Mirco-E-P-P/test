@@ -4,9 +4,9 @@ namespace CashBusiness.Application.Common.Persistence.Transaction;
 
 public interface ICashTransactionRepository
 {
-    public Task<CashTransaction> PersistCashTransaction(CashTransaction cashTransaction);
-    public Task<CashTransaction> FindCashTransactionById(Guid id);
-    public Task<List<CashTransaction>> FindAllTransactions();
-    public Task<CashTransaction> UpdateCashTransaction(CashTransaction cashTransaction);
-    public Task<int> DeleteCashTransactionById(Guid id);
+    public Task<CashTransaction> PersistCashTransactionAsync(CashTransaction cashTransaction);
+    public Task<CashTransaction> FindCashTransactionByIdAsync(Guid id);
+    public Task<List<CashTransaction>> FindAllTransactionsAsync();
+    public Task<CashTransaction> UpdateCashTransactionAsync(CashTransaction cashTransaction);
+    public Task<int> DeleteCashTransactionByIdAsync(Guid id);
 }

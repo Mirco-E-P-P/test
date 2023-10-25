@@ -15,14 +15,14 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
     }
 
 
-    public async Task<CashTransaction> PersistCashTransaction(CashTransaction cashTransaction)
+    public async Task<CashTransaction> PersistCashTransactionAsync(CashTransaction cashTransaction)
     {
         EntityEntry<CashTransaction> savedTransaction = await _dbContext.CashTransactions.AddAsync(cashTransaction);
         await _dbContext.SaveChangesAsync();
         return savedTransaction.Entity;
     }
 
-    public async Task<CashTransaction> FindCashTransactionById(Guid id)
+    public async Task<CashTransaction> FindCashTransactionByIdAsync(Guid id)
     {
         try
         {
@@ -37,12 +37,12 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
         }
     }
 
-    public async Task<List<CashTransaction>> FindAllTransactions()
+    public async Task<List<CashTransaction>> FindAllTransactionsAsync()
     {
         return await _dbContext.CashTransactions.ToListAsync();
     }
 
-    public async Task<CashTransaction> UpdateCashTransaction(CashTransaction cashTransaction)
+    public async Task<CashTransaction> UpdateCashTransactionAsync(CashTransaction cashTransaction)
     {
         _dbContext.Update(cashTransaction);
         _dbContext.Entry(cashTransaction).Property(c => c.Index).IsModified = false;
@@ -53,7 +53,7 @@ public class CashTransactionRepositoryImpl: ICashTransactionRepository
         return cashTransaction;
     }
 
-    public async Task<int> DeleteCashTransactionById(Guid id)
+    public async Task<int> DeleteCashTransactionByIdAsync(Guid id)
     {
         int affectedRows =  await _dbContext.CashTransactions.Where(cashTransaction => cashTransaction.Id == id).ExecuteDeleteAsync();
         return affectedRows;

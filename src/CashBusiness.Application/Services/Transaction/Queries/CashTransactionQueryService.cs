@@ -17,7 +17,7 @@ public class CashTransactionQueryService: ICashTransactionQueryService
 
     public async Task<Result<CashTransaction>> GetTransactionById(Guid id)
     {
-        CashTransaction cashTransaction = await _cashTransactionRepository.FindCashTransactionById(id);
+        CashTransaction cashTransaction = await _cashTransactionRepository.FindCashTransactionByIdAsync(id);
 
         if (cashTransaction == null)
         {
@@ -29,6 +29,6 @@ public class CashTransactionQueryService: ICashTransactionQueryService
 
     public async Task<Result<List<CashTransaction>>> GetAllTransactions()
     {
-        return Result.Ok( await _cashTransactionRepository.FindAllTransactions());
+        return Result.Ok( await _cashTransactionRepository.FindAllTransactionsAsync());
     }
 }
