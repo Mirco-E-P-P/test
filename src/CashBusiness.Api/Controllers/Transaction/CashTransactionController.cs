@@ -7,7 +7,6 @@ using CashBusiness.Contracts.Transaction.vo;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 using MapsterMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashBusiness.Api.Controllers.Transaction;
@@ -39,14 +38,14 @@ public class CashTransactionController: ControllerBase
     [HttpGet]
     public async Task<IActionResult> FindAllCashTransactions()
     {
-        Result<List<CashTransaction>> result = await _cashTransactionQueryService.GetAllTransactions();
+        Result<List<CashTransaction>> result = await _cashTransactionQueryService.GetAllTransactionsAsync();
         return Ok(_mapper.Map<List<CashTransactionVo>>(result.Value));
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> FindTransactionById(Guid id)
     {
-        Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionById(id);
+        Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(id);
 
         if (cashTransactionResult.IsFailed)
         {
@@ -77,7 +76,7 @@ public class CashTransactionController: ControllerBase
             return Problem(title: firstOperationResultError.Message, statusCode:(int) firstOperationResultError.Metadata["statusCode"]);
         }
 
-        Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionById(dto.Id);
+        Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(dto.Id);
 
         if (cashTransactionResult.IsSuccess)
         {
@@ -85,7 +84,7 @@ public class CashTransactionController: ControllerBase
         }
         
         CashTransaction cashTransaction = _mapper.Map<CashTransaction>(dto);
-        Result<CashTransaction> transactionResult = await _cashTransactionCommandService.PersistCashTransaction(cashTransaction);
+        Result<CashTransaction> transactionResult = await _cashTransactionCommandService.PersistCashTransactionAsync(cashTransaction);
         return Ok(_mapper.Map<CashTransactionVo>(transactionResult.Value));
     }
 
@@ -110,7 +109,7 @@ public class CashTransactionController: ControllerBase
 
         //ToDo: search AsNoTracking Alternative
 
-        Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionById(dto.Id);
+        Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(dto.Id);
         
         if (findCashTransactionResult.IsFailed)
         {
@@ -120,14 +119,14 @@ public class CashTransactionController: ControllerBase
         
         CashTransaction cashTransactionUpdated = _mapper.Map<CashTransaction>(dto);
         
-        Result<CashTransaction> transactionResult = await _cashTransactionCommandService.UpdateCashTransaction(cashTransactionUpdated);
+        Result<CashTransaction> transactionResult = await _cashTransactionCommandService.UpdateCashTransactionAsync(cashTransactionUpdated);
         return Ok(_mapper.Map<CashTransactionVo>(transactionResult.Value));
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCashTransaction(Guid id)
     {
-        Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionById(id);
+        Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(id);
 
         if (findCashTransactionResult.IsFailed)
         {
@@ -135,7 +134,7 @@ public class CashTransactionController: ControllerBase
             return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
         }
         
-        Result<int> deleteCashTransactionResult = await _cashTransactionCommandService.DeleteCashTransaction(id);
+        Result<int> deleteCashTransactionResult = await _cashTransactionCommandService.DeleteCashTransactionAsync(id);
         return Ok($" {deleteCashTransactionResult.Value} rows removed successfully ");    
     }
     

@@ -14,18 +14,18 @@ public class CashTransactionCommandService: ICashTransactionCommandService
         _repository = repository;
     }
     
-    public async Task<Result<CashTransaction>> PersistCashTransaction(CashTransaction cashTransaction)
+    public async Task<Result<CashTransaction>> PersistCashTransactionAsync(CashTransaction cashTransaction)
     {
         CashTransaction savedTransaction = await _repository.PersistCashTransactionAsync(cashTransaction);
         return Result.Ok(savedTransaction);
     }
 
-    public async Task<Result<CashTransaction>> UpdateCashTransaction(CashTransaction cashTransaction)
+    public async Task<Result<CashTransaction>> UpdateCashTransactionAsync(CashTransaction cashTransaction)
     {
         return Result.Ok( await _repository.UpdateCashTransactionAsync(cashTransaction));
     }
 
-    public async Task<Result<int>> DeleteCashTransaction(Guid id)
+    public async Task<Result<int>> DeleteCashTransactionAsync(Guid id)
     {
         int deletedRows = await _repository.DeleteCashTransactionByIdAsync(id);
         if (deletedRows == 0)

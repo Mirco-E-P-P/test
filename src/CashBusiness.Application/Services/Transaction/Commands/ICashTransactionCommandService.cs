@@ -5,8 +5,8 @@ namespace CashBusiness.Application.Services.Transaction.Commands;
 
 public interface ICashTransactionCommandService
 {
-    public Task<Result<CashTransaction>> PersistCashTransaction(CashTransaction cashTransaction);
+    public Task<Result<CashTransaction>> PersistCashTransactionAsync(CashTransaction cashTransaction);
 
-    public Task<Result<CashTransaction>> UpdateCashTransaction(CashTransaction cashTransaction);
-    public Task<Result<int>> DeleteCashTransaction(Guid id);
+    public Task<Result<CashTransaction>> UpdateCashTransactionAsync(CashTransaction cashTransaction);
+    public Task<Result<int>> DeleteCashTransactionAsync(Guid id);
 }
