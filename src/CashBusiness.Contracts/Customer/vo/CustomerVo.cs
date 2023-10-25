@@ -1,4 +1,4 @@
-﻿namespace CashBusiness.Contracts.User.vo;
+﻿namespace CashBusiness.Contracts.Customer.vo;
 
 public class CustomerVo
 {

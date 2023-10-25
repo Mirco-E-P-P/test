@@ -1,4 +1,4 @@
-﻿namespace CashBusiness.Contracts.User;
+﻿namespace CashBusiness.Contracts.Customer.dto;
 
 public class CreateCustomerDto
 {
