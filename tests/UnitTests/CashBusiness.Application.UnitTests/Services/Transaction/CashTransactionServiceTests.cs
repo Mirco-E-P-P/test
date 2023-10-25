@@ -63,7 +63,7 @@ public class CashTransactionServiceTests
         await dbContext.SaveChangesAsync();
         
         // Act
-        Result <CashTransaction> result = await cashTransactionQueryService.GetTransactionById(newTransactionId);
+        Result <CashTransaction> result = await cashTransactionQueryService.GetTransactionByIdAsync(newTransactionId);
         
         // Assert
         Assert.True(result.IsSuccess);
@@ -82,7 +82,7 @@ public class CashTransactionServiceTests
 
         
         // Act
-        Result <CashTransaction> result = await cashTransactionQueryService.GetTransactionById(noRegisteredTransactionId);
+        Result <CashTransaction> result = await cashTransactionQueryService.GetTransactionByIdAsync(noRegisteredTransactionId);
         
         // Assert
         Assert.True(result.IsFailed);
@@ -133,7 +133,7 @@ public class CashTransactionServiceTests
         };
         
         // Act
-        Result <CashTransaction> result = await cashTransactionCommandService.PersistCashTransaction(newCashTransaction);
+        Result <CashTransaction> result = await cashTransactionCommandService.PersistCashTransactionAsync(newCashTransaction);
         
         
         // Assert
@@ -179,7 +179,7 @@ public class CashTransactionServiceTests
         };
         
         // Act
-        Result <CashTransaction> result = await cashTransactionCommandService.PersistCashTransaction(newCashTransaction);
+        Result <CashTransaction> result = await cashTransactionCommandService.PersistCashTransactionAsync(newCashTransaction);
         
         
         // Assert

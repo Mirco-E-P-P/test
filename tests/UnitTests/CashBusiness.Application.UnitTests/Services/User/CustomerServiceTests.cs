@@ -30,7 +30,7 @@ public class CustomerServiceTests
         await dbContext.SaveChangesAsync();
         
         //
-        Result <Customer> resultCustomer = await customerQueryService.FindCustomerById(registeredId);
+        Result <Customer> resultCustomer = await customerQueryService.FindCustomerByIdAsync(registeredId);
         
         Assert.Equal(registeredId.ToString(), resultCustomer.Value.Id.ToString());
         Assert.True(resultCustomer.IsSuccess);
@@ -48,7 +48,7 @@ public class CustomerServiceTests
         Guid noRegisteredId = Guid.NewGuid();
         
         //
-        Result <Customer> resultCustomer = await customerQueryService.FindCustomerById(noRegisteredId);
+        Result <Customer> resultCustomer = await customerQueryService.FindCustomerByIdAsync(noRegisteredId);
         
         
         Assert.False(resultCustomer.IsSuccess);
@@ -67,7 +67,7 @@ public class CustomerServiceTests
         // Arrange
         string newCustomerName = "Maria Delgado";
         string NewCustomerPhoneNumber = "60505050";
-        Result <Customer> resultCustomer = await customerCommandService.RegisterCustomer(newCustomerName, NewCustomerPhoneNumber);
+        Result <Customer> resultCustomer = await customerCommandService.RegisterCustomerAsync(newCustomerName, NewCustomerPhoneNumber);
         
         // Assert
         Assert.True(resultCustomer.IsSuccess);
