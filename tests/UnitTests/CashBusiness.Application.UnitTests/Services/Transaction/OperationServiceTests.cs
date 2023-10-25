@@ -32,7 +32,7 @@ public class OperationServiceTests
         operation.Name = "Ingreso";
 
         _mockOperationRepository.Setup(
-                x => x.findAll()
+                x => x.FindAllOperationsAsync()
                 )
             .ReturnsAsync(new List<Operation> {operation});
         
