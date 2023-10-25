@@ -1,4 +1,5 @@
-﻿using CashBusiness.Application.Common.Persistence.user;
+﻿using CashBusiness.Application.Common.Persistence.Customer;
+using CashBusiness.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 

@@ -1,6 +1,6 @@
 using CashBusiness.Application.Common.Persistence;
 using CashBusiness.Application.Common.Persistence.Transaction;
-using CashBusiness.Application.Common.Persistence.user;
+using CashBusiness.Application.Common.Persistence.Customer;
 using Microsoft.EntityFrameworkCore;
 using CashBusiness.Infraestructure.Persistence;
 using CashBusiness.Infraestructure.Persistence.Transaction;

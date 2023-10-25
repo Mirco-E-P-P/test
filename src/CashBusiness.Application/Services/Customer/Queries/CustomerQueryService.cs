@@ -1,5 +1,5 @@
-﻿using CashBusiness.Application.Common.Errors.User;
-using CashBusiness.Application.Common.Persistence.user;
+﻿using CashBusiness.Application.Common.Errors.Customer;
+using CashBusiness.Application.Common.Persistence.Customer;
 using FluentResults;
 
 namespace CashBusiness.Application.Services.Customer.Queries;
