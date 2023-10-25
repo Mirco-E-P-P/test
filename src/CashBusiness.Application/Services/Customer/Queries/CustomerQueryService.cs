@@ -1,9 +1,8 @@
 ﻿using CashBusiness.Application.Common.Errors.User;
 using CashBusiness.Application.Common.Persistence.user;
-using CashBusiness.Domain.Entity;
 using FluentResults;
 
-namespace CashBusiness.Application.Services.User.Queries;
+namespace CashBusiness.Application.Services.Customer.Queries;
 
 public class CustomerQueryService: ICustomerQueryService
 {
@@ -14,9 +13,9 @@ public class CustomerQueryService: ICustomerQueryService
         _customerRepository = customerRepository;
     }
 
-    public async Task<Result<Customer>> FindCustomerByIdAsync(Guid id)
+    public async Task<Result<Domain.Entity.Customer>> FindCustomerByIdAsync(Guid id)
     {
-        Customer customer = await _customerRepository.FindCustomerByIdAsync(id);
+        Domain.Entity.Customer customer = await _customerRepository.FindCustomerByIdAsync(id);
 
         if (customer == null)
         {
@@ -25,7 +24,7 @@ public class CustomerQueryService: ICustomerQueryService
         return Result.Ok(customer);
     }
 
-    public async Task<Result<List<Customer>>> FindAllCustomersAsync()
+    public async Task<Result<List<Domain.Entity.Customer>>> FindAllCustomersAsync()
     {
         return Result.Ok(await _customerRepository.FindAllCustomersAsync());
     }
