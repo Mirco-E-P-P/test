@@ -1,7 +1,7 @@
 ﻿using System.Net;
+using CashBusiness.Application.Services.Customer.Queries;
 using CashBusiness.Application.Services.Transaction.Commands;
 using CashBusiness.Application.Services.Transaction.Queries;
-using CashBusiness.Application.Services.User.Queries;
 using CashBusiness.Contracts.Transaction.dto;
 using CashBusiness.Contracts.Transaction.vo;
 using CashBusiness.Domain.Entity;
