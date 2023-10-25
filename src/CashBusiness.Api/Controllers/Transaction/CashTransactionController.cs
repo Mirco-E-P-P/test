@@ -60,7 +60,7 @@ public class CashTransactionController: ControllerBase
     [HttpPost]
     public async Task<IActionResult> RegisterCashTransaction(RegisterCashTransactionDto dto)
     {
-        Result <Customer> customerResult = await _customerQueryService.FindCustomerById(dto.CustomerId);
+        Result <Customer> customerResult = await _customerQueryService.FindCustomerByIdAsync(dto.CustomerId);
         
         if (customerResult.IsFailed)
         {
@@ -91,7 +91,7 @@ public class CashTransactionController: ControllerBase
     [HttpPut]
     public async Task<IActionResult> UpdateCashTransaction(UpdateCashTransactionDto dto)
     {
-        Result <Customer> findCustomerResult = await _customerQueryService.FindCustomerById(dto.CustomerId);
+        Result <Customer> findCustomerResult = await _customerQueryService.FindCustomerByIdAsync(dto.CustomerId);
         
         if (findCustomerResult.IsFailed)
         {

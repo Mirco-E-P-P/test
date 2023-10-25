@@ -30,7 +30,7 @@ public class CustomerController: ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetCustomerById(Guid id)
     {
-        Result<Customer> customerResult = await _customerQueryService.FindCustomerById(id);
+        Result<Customer> customerResult = await _customerQueryService.FindCustomerByIdAsync(id);
         
         if (customerResult.IsFailed)
         {
@@ -45,14 +45,14 @@ public class CustomerController: ControllerBase
     [HttpPost]
     public async Task<IActionResult> RegisterCustomer(CreateCustomerDto createCustomerDto)
     {
-        Result<Customer> customerResult = await _customerCommandService.RegisterCustomer(createCustomerDto.Name, createCustomerDto.PhoneNumber);
+        Result<Customer> customerResult = await _customerCommandService.RegisterCustomerAsync(createCustomerDto.Name, createCustomerDto.PhoneNumber);
         return Ok( _mapper.Map<CustomerVo>(customerResult.Value) );
     }
 
     [HttpGet]
     public async Task<IActionResult> FinAllCustomer()
     {
-        Result<List<Customer>> customersResult = await _customerQueryService.FindAllCustomers();
+        Result<List<Customer>> customersResult = await _customerQueryService.FindAllCustomersAsync();
         List<CustomerVo> customerVos = _mapper.Map<List<CustomerVo>>(customersResult.Value);
         return Ok(customerVos);
     }
