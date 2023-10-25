@@ -1,7 +1,7 @@
-﻿using CashBusiness.Application.Services.User.Commands;
-using CashBusiness.Application.Services.User.Queries;
-using CashBusiness.Contracts.User;
-using CashBusiness.Contracts.User.vo;
+﻿using CashBusiness.Application.Services.Customer.Commands;
+using CashBusiness.Application.Services.Customer.Queries;
+using CashBusiness.Contracts.Customer.dto;
+using CashBusiness.Contracts.Customer.vo;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 using MapsterMapper;
