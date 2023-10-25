@@ -1,4 +1,4 @@
-﻿using CashBusiness.Contracts.User.vo;
+﻿using CashBusiness.Contracts.Customer.vo;
 using CashBusiness.Domain.Entity;
 using Mapster;
 
