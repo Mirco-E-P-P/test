@@ -1,15 +1,13 @@
 ﻿using CashBusiness.Application.Common.Persistence;
-using CashBusiness.Application.Services.Transaction.Queries;
+using CashBusiness.Application.Services.OperationServices.Queries;
 using CashBusiness.Application.UnitTests.Services.Transaction.ServiceUtils;
 using CashBusiness.Domain.Entity;
 using CashBusiness.Infraestructure.Persistence;
-using CashBusiness.Infraestructure.Persistence.Transaction;
 using FluentResults;
 using Moq;
 
 
 namespace CashBusiness.Application.UnitTests.Services.Transaction;
-using CashBusiness.Application.Services.Transaction;
 
 public class OperationServiceTests
 {

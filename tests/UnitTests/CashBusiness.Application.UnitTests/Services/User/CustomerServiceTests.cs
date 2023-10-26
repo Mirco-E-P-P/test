@@ -1,11 +1,10 @@
 using System.Net;
-using CashBusiness.Application.Common.Persistence.user;
-using CashBusiness.Application.Services.User.Commands;
-using CashBusiness.Application.Services.User.Queries;
+using CashBusiness.Application.Common.Persistence;
+using CashBusiness.Application.Services.CustomerServices.Commands;
+using CashBusiness.Application.Services.CustomerServices.Queries;
 using CashBusiness.Application.UnitTests.Services.Transaction.ServiceUtils;
 using CashBusiness.Domain.Entity;
 using CashBusiness.Infraestructure.Persistence;
-using CashBusiness.Infraestructure.Persistence.User;
 using FluentResults;
 
 namespace CashBusiness.Application.UnitTests.Services.User;
