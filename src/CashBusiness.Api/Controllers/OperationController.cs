@@ -1,13 +1,11 @@
-﻿
-using CashBusiness.Application.Services.Transaction.Queries;
-using CashBusiness.Contracts.Transaction.vo;
+﻿using CashBusiness.Application.Services.OperationServices.Queries;
+using CashBusiness.Contracts.Operation.Responses;
 using CashBusiness.Domain.Entity;
 using FluentResults;
-using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CashBusiness.Api.Controllers.Transaction;
+namespace CashBusiness.Api.Controllers;
 
 [ApiController]
 [Route("operation")]
@@ -26,23 +24,25 @@ public class OperationController: ControllerBase
     public async Task<IActionResult> FindAllOperations()
     {
         Result<List<Operation>> result = await _operationQueryService.FindAllOperationsAsync();
-        return Ok(_mapper.Map<List<OperationVo>>(result.Value));
+        return Ok(_mapper.Map<List<OperationResponse>>(result.Value));
     }
     
     [HttpGet("{id}")]
     public async Task<IActionResult> FindOperationById(Guid id)
     {
         
-        Result<Operation> result = await _operationQueryService.FindOperationByIdAsync(id);
+        Result<Operation> operationResult = await _operationQueryService.FindOperationByIdAsync(id);
         
-        if (result.IsSuccess)
+        if (operationResult.IsFailed)
         {
-            return Ok(_mapper.Map<OperationVo>(result.Value));
+            IError firstError = operationResult.Errors[0];
+            Console.WriteLine(firstError.Message);
+            Console.WriteLine(firstError.Metadata["statusCode"]);
+            return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
         }
         
-        IError firstError = result.Errors[0];
+        return Ok(_mapper.Map<OperationResponse>(operationResult.Value));
 
-        return Problem(firstError.Message, statusCode: 404 );
     }
     
     
