@@ -1,4 +1,4 @@
-﻿using CashBusiness.Contracts.Transaction.vo;
+﻿using CashBusiness.Contracts.Operation.Responses;
 using CashBusiness.Domain.Entity;
 using Mapster;
 
@@ -8,7 +8,7 @@ public class OperationMappingConfig: IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<Operation, OperationVo>()
+        config.NewConfig<Operation, OperationResponse>()
             .Map(destination => destination.Id, source => source.Id.ToString())
             .Map(destination => destination.Name, source => source.Name );
         
