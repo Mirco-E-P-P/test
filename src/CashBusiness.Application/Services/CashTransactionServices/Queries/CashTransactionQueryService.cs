@@ -1,9 +1,9 @@
-using CashBusiness.Application.Common.Errors.Transaction;
-using CashBusiness.Application.Common.Persistence.Transaction;
+using CashBusiness.Application.Common.Errors;
+using CashBusiness.Application.Common.Persistence;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 
-namespace CashBusiness.Application.Services.Transaction.Queries;
+namespace CashBusiness.Application.Services.CashTransactionServices.Queries;
 
 public class CashTransactionQueryService: ICashTransactionQueryService
 {
@@ -21,7 +21,7 @@ public class CashTransactionQueryService: ICashTransactionQueryService
 
         if (cashTransaction == null)
         {
-            return Result.Fail(new NotFoundCashTransaction($"Invalid cash transaction id: {id}"));
+            return Result.Fail(new CashTransactionNotFound($"Invalid cash transaction id: {id}"));
         }
 
         return Result.Ok(cashTransaction);

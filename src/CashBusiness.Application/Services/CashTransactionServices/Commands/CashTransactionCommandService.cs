@@ -1,9 +1,8 @@
-﻿using CashBusiness.Application.Common.Errors.Transaction;
-using CashBusiness.Application.Common.Persistence.Transaction;
-using CashBusiness.Domain.Entity;
+﻿using CashBusiness.Application.Common.Errors;
+using CashBusiness.Application.Common.Persistence;
 using FluentResults;
 
-namespace CashBusiness.Application.Services.Transaction.Commands;
+namespace CashBusiness.Application.Services.CashTransactionServices.Commands;
 
 public class CashTransactionCommandService: ICashTransactionCommandService
 {
@@ -14,13 +13,13 @@ public class CashTransactionCommandService: ICashTransactionCommandService
         _repository = repository;
     }
     
-    public async Task<Result<CashTransaction>> PersistCashTransactionAsync(CashTransaction cashTransaction)
+    public async Task<Result<Domain.Entity.CashTransaction>> PersistCashTransactionAsync(Domain.Entity.CashTransaction cashTransaction)
     {
-        CashTransaction savedTransaction = await _repository.PersistCashTransactionAsync(cashTransaction);
+        Domain.Entity.CashTransaction savedTransaction = await _repository.PersistCashTransactionAsync(cashTransaction);
         return Result.Ok(savedTransaction);
     }
 
-    public async Task<Result<CashTransaction>> UpdateCashTransactionAsync(CashTransaction cashTransaction)
+    public async Task<Result<Domain.Entity.CashTransaction>> UpdateCashTransactionAsync(Domain.Entity.CashTransaction cashTransaction)
     {
         return Result.Ok( await _repository.UpdateCashTransactionAsync(cashTransaction));
     }
@@ -30,7 +29,7 @@ public class CashTransactionCommandService: ICashTransactionCommandService
         int deletedRows = await _repository.DeleteCashTransactionByIdAsync(id);
         if (deletedRows == 0)
         {
-            return Result.Fail(new NotFoundCashTransaction($"There is not exist a cash transaction with id: {id}"));
+            return Result.Fail(new CashTransactionNotFound($"There is not exist a cash transaction with id: {id}"));
         }
         
         return Result.Ok(deletedRows);

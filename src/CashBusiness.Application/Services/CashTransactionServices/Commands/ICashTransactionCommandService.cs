@@ -1,7 +1,7 @@
 ﻿using CashBusiness.Domain.Entity;
 using FluentResults;
 
-namespace CashBusiness.Application.Services.Transaction.Commands;
+namespace CashBusiness.Application.Services.CashTransactionServices.Commands;
 
 public interface ICashTransactionCommandService
 {

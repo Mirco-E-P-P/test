@@ -1,7 +1,7 @@
-using FluentResults;
 using CashBusiness.Domain.Entity;
+using FluentResults;
 
-namespace CashBusiness.Application.Services.Transaction.Queries;
+namespace CashBusiness.Application.Services.CashTransactionServices.Queries;
 
 public interface ICashTransactionQueryService
 {
