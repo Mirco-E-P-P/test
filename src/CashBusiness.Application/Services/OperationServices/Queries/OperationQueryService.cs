@@ -3,7 +3,7 @@ using CashBusiness.Application.Common.Persistence;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 
-namespace CashBusiness.Application.Services.Transaction.Queries;
+namespace CashBusiness.Application.Services.OperationServices.Queries;
 
 public class OperationQueryService: IOperationQueryService
 {
