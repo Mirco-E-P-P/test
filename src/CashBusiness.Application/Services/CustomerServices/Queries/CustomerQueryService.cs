@@ -1,8 +1,8 @@
-﻿using CashBusiness.Application.Common.Errors.Customer;
-using CashBusiness.Application.Common.Persistence.Customer;
+﻿using CashBusiness.Application.Common.Errors;
+using CashBusiness.Application.Common.Persistence;
 using FluentResults;
 
-namespace CashBusiness.Application.Services.Customer.Queries;
+namespace CashBusiness.Application.Services.CustomerServices.Queries;
 
 public class CustomerQueryService: ICustomerQueryService
 {
@@ -19,7 +19,7 @@ public class CustomerQueryService: ICustomerQueryService
 
         if (customer == null)
         {
-            return Result.Fail(new NotFoundCustomer($"No such customer found for id: {id}" ));
+            return Result.Fail(new CustomerNotFound($"No such customer found for id: {id}" ));
         }
         return Result.Ok(customer);
     }

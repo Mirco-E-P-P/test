@@ -1,7 +1,7 @@
-﻿using CashBusiness.Application.Common.Persistence.Customer;
+﻿using CashBusiness.Application.Common.Persistence;
 using FluentResults;
 
-namespace CashBusiness.Application.Services.Customer.Commands;
+namespace CashBusiness.Application.Services.CustomerServices.Commands;
 
 public class CustomerCommandService: ICustomerCommandService
 {

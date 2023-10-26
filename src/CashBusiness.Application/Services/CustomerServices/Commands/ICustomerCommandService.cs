@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 
-namespace CashBusiness.Application.Services.Customer.Commands;
+namespace CashBusiness.Application.Services.CustomerServices.Commands;
 
 public interface ICustomerCommandService
 {
