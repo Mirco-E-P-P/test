@@ -36,8 +36,6 @@ public class OperationController: ControllerBase
         if (operationResult.IsFailed)
         {
             IError firstError = operationResult.Errors[0];
-            Console.WriteLine(firstError.Message);
-            Console.WriteLine(firstError.Metadata["statusCode"]);
             return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
         }
         
