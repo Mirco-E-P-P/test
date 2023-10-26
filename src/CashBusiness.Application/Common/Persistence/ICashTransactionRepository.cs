@@ -1,6 +1,6 @@
 ﻿using CashBusiness.Domain.Entity;
 
-namespace CashBusiness.Application.Common.Persistence.Transaction;
+namespace CashBusiness.Application.Common.Persistence;
 
 public interface ICashTransactionRepository
 {
