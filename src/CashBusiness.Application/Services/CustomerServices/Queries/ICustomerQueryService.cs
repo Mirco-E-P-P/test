@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 
-namespace CashBusiness.Application.Services.Customer.Queries;
+namespace CashBusiness.Application.Services.CustomerServices.Queries;
 
 public interface ICustomerQueryService
 {
