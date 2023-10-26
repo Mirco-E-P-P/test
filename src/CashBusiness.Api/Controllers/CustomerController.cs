@@ -1,13 +1,13 @@
-﻿using CashBusiness.Application.Services.Customer.Commands;
-using CashBusiness.Application.Services.Customer.Queries;
-using CashBusiness.Contracts.Customer.dto;
-using CashBusiness.Contracts.Customer.vo;
+﻿using CashBusiness.Application.Services.CustomerServices.Commands;
+using CashBusiness.Application.Services.CustomerServices.Queries;
+using CashBusiness.Contracts.Customer.Requests;
+using CashBusiness.Contracts.Customer.Responses;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CashBusiness.Api.Controllers.User;
+namespace CashBusiness.Api.Controllers;
 
 [ApiController]
 [Route("customer")]
@@ -35,30 +35,25 @@ public class CustomerController: ControllerBase
         if (customerResult.IsFailed)
         {
             IError firstError = customerResult.Errors[0];
-
             return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
         }
         
-        return Ok(_mapper.Map<CustomerVo>(customerResult.Value));
+        return Ok(_mapper.Map<CustomerResponse>(customerResult.Value));
     }
 
     [HttpPost]
-    public async Task<IActionResult> RegisterCustomer(CreateCustomerDto createCustomerDto)
+    public async Task<IActionResult> RegisterCustomer(CreateCustomerRequest request)
     {
-        Result<Customer> customerResult = await _customerCommandService.RegisterCustomerAsync(createCustomerDto.Name, createCustomerDto.PhoneNumber);
-        return Ok( _mapper.Map<CustomerVo>(customerResult.Value) );
+        Result<Customer> customerResult = await _customerCommandService.RegisterCustomerAsync(request.Name, request.PhoneNumber);
+        return Ok( _mapper.Map<CustomerResponse>(customerResult.Value) );
     }
 
     [HttpGet]
     public async Task<IActionResult> FinAllCustomer()
     {
         Result<List<Customer>> customersResult = await _customerQueryService.FindAllCustomersAsync();
-        List<CustomerVo> customerVos = _mapper.Map<List<CustomerVo>>(customersResult.Value);
+        List<CustomerResponse> customerVos = _mapper.Map<List<CustomerResponse>>(customersResult.Value);
         return Ok(customerVos);
     }
-
     
-
-
-
 }
