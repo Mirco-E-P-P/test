@@ -1,8 +1,12 @@
-﻿using CashBusiness.Application.Common.Persistence;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CashBusiness.Application.Common.Persistence;
 using CashBusiness.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace CashBusiness.Infraestructure.Persistence.Transaction;
+namespace CashBusiness.Infraestructure.Persistence;
 
 public class OperationRepositoryImpl :IOperationRepository
 {

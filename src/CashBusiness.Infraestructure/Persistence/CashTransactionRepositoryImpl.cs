@@ -1,9 +1,13 @@
-﻿using CashBusiness.Application.Common.Persistence.Transaction;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CashBusiness.Application.Common.Persistence;
 using CashBusiness.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace CashBusiness.Infraestructure.Persistence.Transaction;
+namespace CashBusiness.Infraestructure.Persistence;
 
 public class CashTransactionRepositoryImpl: ICashTransactionRepository
 {

@@ -1,9 +1,13 @@
-﻿using CashBusiness.Application.Common.Persistence.Customer;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CashBusiness.Application.Common.Persistence;
 using CashBusiness.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace CashBusiness.Infraestructure.Persistence.User;
+namespace CashBusiness.Infraestructure.Persistence;
 
 public class CustomerRepositoryImpl: ICustomerRepository
 {
@@ -15,9 +19,9 @@ public class CustomerRepositoryImpl: ICustomerRepository
     }
 
 
-    public async Task<Domain.Entity.Customer> PersistedCustomerAsync(string name, string phoneNumber)
+    public async Task<Customer> PersistedCustomerAsync(string name, string phoneNumber)
     {
-        var customer = new Domain.Entity.Customer
+        var customer = new Customer
         {
             Name = name,
             PhoneNumber = phoneNumber
@@ -30,11 +34,11 @@ public class CustomerRepositoryImpl: ICustomerRepository
         return customerSaved.Entity;
     }
 
-    public async Task<Domain.Entity.Customer> FindCustomerByIdAsync(Guid id)
+    public async Task<Customer> FindCustomerByIdAsync(Guid id)
     {
         try
         {
-            Domain.Entity.Customer customer = await Queryable.Where<Domain.Entity.Customer>(_context.Customers, customer => customer.Id == id).FirstAsync();
+            Customer customer = await Queryable.Where<Customer>(_context.Customers, customer => customer.Id == id).FirstAsync();
             return customer;
             
         }
@@ -45,16 +49,16 @@ public class CustomerRepositoryImpl: ICustomerRepository
         
     }
 
-    public async Task<List<Domain.Entity.Customer>> FindAllCustomersAsync()
+    public async Task<List<Customer>> FindAllCustomersAsync()
     {
-        return await _context.Customers.ToListAsync<Domain.Entity.Customer>();
+        return await _context.Customers.ToListAsync<Customer>();
     }
 
-    public async Task<Domain.Entity.Customer> FindCustomerByNameAsync(string name)
+    public async Task<Customer> FindCustomerByNameAsync(string name)
     {
         try
         {
-            Domain.Entity.Customer customer = await Queryable.Where<Domain.Entity.Customer>(_context.Customers, customer => customer.Name == name).FirstAsync();
+            Customer customer = await Queryable.Where<Customer>(_context.Customers, customer => customer.Name == name).FirstAsync();
             return customer;
         }
         catch (Exception e)
