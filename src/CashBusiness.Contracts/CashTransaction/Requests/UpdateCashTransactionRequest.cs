@@ -1,6 +1,6 @@
-namespace CashBusiness.Contracts.Transaction.dto;
+namespace CashBusiness.Contracts.CashTransaction.Requests;
 
-public class UpdateCashTransactionDto
+public class UpdateCashTransactionRequest
 {
      public Guid Id { get; set; } 
      public Guid CustomerId { get; set; }

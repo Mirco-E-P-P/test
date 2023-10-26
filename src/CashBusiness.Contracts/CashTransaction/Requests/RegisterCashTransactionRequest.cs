@@ -1,6 +1,6 @@
-﻿namespace CashBusiness.Contracts.Transaction.dto;
+﻿namespace CashBusiness.Contracts.CashTransaction.Requests;
 
-public class RegisterCashTransactionDto
+public class RegisterCashTransactionRequest
 {
     public Guid Id { get; set; }
     public Guid CustomerId { get; set; }

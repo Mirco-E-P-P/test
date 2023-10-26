@@ -1,6 +1,6 @@
-﻿namespace CashBusiness.Contracts.Transaction.vo;
+﻿namespace CashBusiness.Contracts.CashTransaction.Responses;
 
-public class CashTransactionVo
+public class CashTransactionResponse
 {
     public Guid Id { get; set; } = Guid.Empty;
 
