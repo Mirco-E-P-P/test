@@ -1,15 +1,16 @@
 ﻿using System.Net;
-using CashBusiness.Application.Services.Customer.Queries;
-using CashBusiness.Application.Services.Transaction.Commands;
-using CashBusiness.Application.Services.Transaction.Queries;
-using CashBusiness.Contracts.Transaction.dto;
-using CashBusiness.Contracts.Transaction.vo;
+using CashBusiness.Application.Services.CashTransactionServices.Commands;
+using CashBusiness.Application.Services.CashTransactionServices.Queries;
+using CashBusiness.Application.Services.CustomerServices.Queries;
+using CashBusiness.Application.Services.OperationServices.Queries;
+using CashBusiness.Contracts.CashTransaction.Requests;
+using CashBusiness.Contracts.CashTransaction.Responses;
 using CashBusiness.Domain.Entity;
 using FluentResults;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CashBusiness.Api.Controllers.Transaction;
+namespace CashBusiness.Api.Controllers;
 
 [ApiController]
 [Route("transaction")]
@@ -39,7 +40,7 @@ public class CashTransactionController: ControllerBase
     public async Task<IActionResult> FindAllCashTransactions()
     {
         Result<List<CashTransaction>> result = await _cashTransactionQueryService.GetAllTransactionsAsync();
-        return Ok(_mapper.Map<List<CashTransactionVo>>(result.Value));
+        return Ok(_mapper.Map<List<CashTransactionResponse>>(result.Value));
     }
 
     [HttpGet("{id}")]
@@ -53,14 +54,14 @@ public class CashTransactionController: ControllerBase
             return Problem(title:firstError.Message, statusCode: (int) firstError.Metadata["statusCode"] );
         }
 
-        return Ok(_mapper.Map<CashTransactionVo>(cashTransactionResult.Value));
+        return Ok(_mapper.Map<CashTransactionResponse>(cashTransactionResult.Value));
     }
 
 
     [HttpPost]
-    public async Task<IActionResult> RegisterCashTransaction(RegisterCashTransactionDto dto)
+    public async Task<IActionResult> RegisterCashTransaction(RegisterCashTransactionRequest request)
     {
-        Result <Customer> customerResult = await _customerQueryService.FindCustomerByIdAsync(dto.CustomerId);
+        Result <Customer> customerResult = await _customerQueryService.FindCustomerByIdAsync(request.CustomerId);
         
         if (customerResult.IsFailed)
         {
@@ -68,7 +69,7 @@ public class CashTransactionController: ControllerBase
             return Problem(title: firstCustomerResultErrorError.Message, statusCode:(int) firstCustomerResultErrorError.Metadata["statusCode"]);
         }
 
-        Result<Operation> operationResult = await _operationQueryService.FindOperationByIdAsync(dto.OperationId);
+        Result<Operation> operationResult = await _operationQueryService.FindOperationByIdAsync(request.OperationId);
 
         if (operationResult.IsFailed)
         {
@@ -76,22 +77,22 @@ public class CashTransactionController: ControllerBase
             return Problem(title: firstOperationResultError.Message, statusCode:(int) firstOperationResultError.Metadata["statusCode"]);
         }
 
-        Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(dto.Id);
+        Result<CashTransaction> cashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(request.Id);
 
         if (cashTransactionResult.IsSuccess)
         {
             return Problem(title: "The transaction id is already in use.", statusCode: (int)HttpStatusCode.Conflict);
         }
         
-        CashTransaction cashTransaction = _mapper.Map<CashTransaction>(dto);
+        CashTransaction cashTransaction = _mapper.Map<CashTransaction>(request);
         Result<CashTransaction> transactionResult = await _cashTransactionCommandService.PersistCashTransactionAsync(cashTransaction);
-        return Ok(_mapper.Map<CashTransactionVo>(transactionResult.Value));
+        return Ok(_mapper.Map<CashTransactionResponse>(transactionResult.Value));
     }
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateCashTransaction(UpdateCashTransactionDto dto)
+    [HttpPatch]
+    public async Task<IActionResult> UpdateCashTransaction(UpdateCashTransactionRequest request)
     {
-        Result <Customer> findCustomerResult = await _customerQueryService.FindCustomerByIdAsync(dto.CustomerId);
+        Result <Customer> findCustomerResult = await _customerQueryService.FindCustomerByIdAsync(request.CustomerId);
         
         if (findCustomerResult.IsFailed)
         {
@@ -99,7 +100,7 @@ public class CashTransactionController: ControllerBase
             return Problem(title: firstCustomerResultErrorError.Message, statusCode:(int) firstCustomerResultErrorError.Metadata["statusCode"]);
         }
         
-        Result<Operation> findOperationResult = await _operationQueryService.FindOperationByIdAsync(dto.OperationId);
+        Result<Operation> findOperationResult = await _operationQueryService.FindOperationByIdAsync(request.OperationId);
         
         if (findOperationResult.IsFailed)
         {
@@ -109,7 +110,7 @@ public class CashTransactionController: ControllerBase
 
         //ToDo: search AsNoTracking Alternative
 
-        Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(dto.Id);
+        Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(request.Id);
         
         if (findCashTransactionResult.IsFailed)
         {
@@ -117,26 +118,30 @@ public class CashTransactionController: ControllerBase
             return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
         }
         
-        CashTransaction cashTransactionUpdated = _mapper.Map<CashTransaction>(dto);
+        CashTransaction cashTransactionUpdated = _mapper.Map<CashTransaction>(request);
         
         Result<CashTransaction> transactionResult = await _cashTransactionCommandService.UpdateCashTransactionAsync(cashTransactionUpdated);
-        return Ok(_mapper.Map<CashTransactionVo>(transactionResult.Value));
+        return Ok(_mapper.Map<CashTransactionResponse>(transactionResult.Value));
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCashTransaction(Guid id)
     {
-        Result<CashTransaction> findCashTransactionResult = await _cashTransactionQueryService.GetTransactionByIdAsync(id);
+        Result<CashTransaction> findCashTransactionResult =
+            await _cashTransactionQueryService.GetTransactionByIdAsync(id);
 
         if (findCashTransactionResult.IsFailed)
         {
             IError firstError = findCashTransactionResult.Errors[0];
-            return Problem(title: firstError.Message, statusCode: (int) firstError.Metadata["statusCode"]);
+            return Problem(title: firstError.Message, statusCode: (int)firstError.Metadata["statusCode"]);
         }
-        
+
         Result<int> deleteCashTransactionResult = await _cashTransactionCommandService.DeleteCashTransactionAsync(id);
-        return Ok($" {deleteCashTransactionResult.Value} rows removed successfully ");    
-    }
+        return Ok(new SuccessfulEliminationResponse(){
+            Message = $" {deleteCashTransactionResult.Value} rows removed successfully "
+        }
+        );
+}
     
 
 
