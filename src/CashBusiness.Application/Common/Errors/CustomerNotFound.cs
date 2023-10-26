@@ -1,20 +1,19 @@
 ﻿using System.Net;
 using FluentResults;
 
-namespace CashBusiness.Application.Common.Errors.Customer;
+namespace CashBusiness.Application.Common.Errors;
 
-public class NotFoundCustomer: IError
+public class CustomerNotFound: IError
 {
     public string Message { get; }
     public Dictionary<string, object> Metadata { get; } = new Dictionary<string, object>();
-    
     public List<IError> Reasons { get; } = new List<IError>();
 
 
-    public NotFoundCustomer(string message)
+    public CustomerNotFound(string message = "Customer not found")
     {   
         Message = message;
-        Metadata.Add("statusCode", HttpStatusCode.NotFound);
+        Metadata.Add("statusCode", HttpStatusCode.Conflict);
 
     }
 

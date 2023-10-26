@@ -5,15 +5,16 @@ namespace CashBusiness.Application.Common.Errors;
 
 public class OperationNotFound: IError
 {
-    public string Message { get;} = String.Empty;
-    //public Dictionary<string, object> Metadata { get; } = new Dictionary<string, object>();
-    public Dictionary<string, object> Metadata => new Dictionary<string, object>{{"statusCode", HttpStatusCode.Conflict}};
+    public string Message { get;}
+    public Dictionary<string, object> Metadata => new Dictionary<string, object>();
     public List<IError> Reasons { get; } = new List<IError>();
 
     
     public OperationNotFound(string message = "Operation not found")
-    {
+    { 
+        Metadata.Add("statusCode", HttpStatusCode.Conflict);
         Message = message;
+        Console.WriteLine(Metadata["statusCode"]);
     }
 
 }

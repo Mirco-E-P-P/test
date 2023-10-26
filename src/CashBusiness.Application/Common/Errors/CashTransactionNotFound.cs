@@ -1,15 +1,15 @@
 using System.Net;
 using FluentResults;
 
-namespace CashBusiness.Application.Common.Errors.Transaction;
+namespace CashBusiness.Application.Common.Errors;
 
-public class NotFoundCashTransaction: IError
+public class CashTransactionNotFound: IError
 {
     public string Message { get; } = String.Empty; 
     public Dictionary<string, object> Metadata { get; } = new Dictionary<string, object>();
     public List<IError> Reasons { get; } = new List<IError>();
 
-    public NotFoundCashTransaction(string message)
+    public CashTransactionNotFound(string message = "Cash transaction not found ")
     {
         Message = message;
         Metadata.Add("statusCode",HttpStatusCode.NotFound);
