@@ -1,11 +1,26 @@
+using CashBusiness.Api;
+using CashBusiness.Application;
+using CashBusiness.Infraestructure;
+using CashBusiness.Infraestructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
+builder.Services.AddPresentation();
+builder.Services.AddInfraestructure();
+builder.Services.AddApplication();
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 
 var app = builder.Build();
 
