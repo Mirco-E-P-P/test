@@ -1,11 +1,10 @@
 using System.Net;
-using CashBusiness.Application.Common.Persistence.user;
-using CashBusiness.Application.Services.User.Commands;
-using CashBusiness.Application.Services.User.Queries;
+using CashBusiness.Application.Common.Persistence;
+using CashBusiness.Application.Services.CustomerServices.Commands;
+using CashBusiness.Application.Services.CustomerServices.Queries;
 using CashBusiness.Application.UnitTests.Services.Transaction.ServiceUtils;
 using CashBusiness.Domain.Entity;
 using CashBusiness.Infraestructure.Persistence;
-using CashBusiness.Infraestructure.Persistence.User;
 using FluentResults;
 
 namespace CashBusiness.Application.UnitTests.Services.User;
@@ -30,7 +29,7 @@ public class CustomerServiceTests
         await dbContext.SaveChangesAsync();
         
         //
-        Result <Customer> resultCustomer = await customerQueryService.FindCustomerById(registeredId.ToString());
+        Result <Customer> resultCustomer = await customerQueryService.FindCustomerByIdAsync(registeredId);
         
         Assert.Equal(registeredId.ToString(), resultCustomer.Value.Id.ToString());
         Assert.True(resultCustomer.IsSuccess);
@@ -48,7 +47,7 @@ public class CustomerServiceTests
         Guid noRegisteredId = Guid.NewGuid();
         
         //
-        Result <Customer> resultCustomer = await customerQueryService.FindCustomerById(noRegisteredId.ToString());
+        Result <Customer> resultCustomer = await customerQueryService.FindCustomerByIdAsync(noRegisteredId);
         
         
         Assert.False(resultCustomer.IsSuccess);
@@ -67,7 +66,7 @@ public class CustomerServiceTests
         // Arrange
         string newCustomerName = "Maria Delgado";
         string NewCustomerPhoneNumber = "60505050";
-        Result <Customer> resultCustomer = await customerCommandService.RegisterCustomer(newCustomerName, NewCustomerPhoneNumber);
+        Result <Customer> resultCustomer = await customerCommandService.RegisterCustomerAsync(newCustomerName, NewCustomerPhoneNumber);
         
         // Assert
         Assert.True(resultCustomer.IsSuccess);

@@ -9,7 +9,9 @@ public class CashTransactionConfig: IEntityTypeConfiguration<CashTransaction>
 {
     public void Configure(EntityTypeBuilder<CashTransaction> builder)
     {
-        builder.HasKey(nameof(CashTransaction.Index), nameof(CashTransaction.Id));
+        builder.HasKey(cashTransaction => cashTransaction.Id).IsClustered(false);
+        
+        builder.HasIndex(cashTransaction => cashTransaction.Index).IsUnique().IsClustered();
         builder.Property(cashTransaction => cashTransaction.Index).ValueGeneratedOnAdd();
         
         builder.Property(cashTransaction => cashTransaction.Amount).HasColumnType("decimal(10,2)");

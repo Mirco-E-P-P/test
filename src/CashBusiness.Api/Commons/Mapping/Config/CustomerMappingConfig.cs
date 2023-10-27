@@ -1,4 +1,4 @@
-﻿using CashBusiness.Contracts.User.vo;
+﻿using CashBusiness.Contracts.Customer.Responses;
 using CashBusiness.Domain.Entity;
 using Mapster;
 
@@ -8,10 +8,9 @@ public class CustomerMappingConfig: IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<Customer, CustomerVo>()
+        config.NewConfig<Customer, CustomerResponse>()
             .Map(destination => destination.Id, source => source.Id.ToString())
             .Map(destination => destination.Name, source => source.Name)
             .Map(destination => destination.PhoneNumber, source => source.PhoneNumber);
-        
     }
 }

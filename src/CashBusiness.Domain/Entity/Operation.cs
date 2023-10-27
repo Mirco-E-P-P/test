@@ -4,4 +4,5 @@ public class Operation {
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; } = String.Empty;
 
+    public List<CashTransaction> CashTransactions { get; set; } = new List<CashTransaction>();
 }

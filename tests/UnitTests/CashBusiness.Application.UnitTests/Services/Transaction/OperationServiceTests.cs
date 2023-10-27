@@ -1,15 +1,13 @@
 ﻿using CashBusiness.Application.Common.Persistence;
-using CashBusiness.Application.Services.Transaction.Queries;
+using CashBusiness.Application.Services.OperationServices.Queries;
 using CashBusiness.Application.UnitTests.Services.Transaction.ServiceUtils;
 using CashBusiness.Domain.Entity;
 using CashBusiness.Infraestructure.Persistence;
-using CashBusiness.Infraestructure.Persistence.Transaction;
 using FluentResults;
 using Moq;
 
 
 namespace CashBusiness.Application.UnitTests.Services.Transaction;
-using CashBusiness.Application.Services.Transaction;
 
 public class OperationServiceTests
 {
@@ -32,7 +30,7 @@ public class OperationServiceTests
         operation.Name = "Ingreso";
 
         _mockOperationRepository.Setup(
-                x => x.findAll()
+                x => x.FindAllOperationsAsync()
                 )
             .ReturnsAsync(new List<Operation> {operation});
         
@@ -49,7 +47,7 @@ public class OperationServiceTests
         
         Guid nonexistentId = Guid.NewGuid();
         
-        Result<Operation> operationsResult = await service.FindOperationByIdAsync(nonexistentId.ToString());
+        Result<Operation> operationsResult = await service.FindOperationByIdAsync(nonexistentId);
         
         Assert.True(operationsResult.IsFailed); 
         
@@ -89,7 +87,7 @@ public class OperationServiceTests
         var repository = new OperationRepositoryImpl(dbContext);
         var service = new OperationQueryService(repository);
         
-        Result<Operation> operationsResult = await service.FindOperationByIdAsync(registeredOperationId.ToString());
+        Result<Operation> operationsResult = await service.FindOperationByIdAsync(registeredOperationId);
        
   
         Assert.Equal(registeredOperationId, operationsResult.Value.Id); 

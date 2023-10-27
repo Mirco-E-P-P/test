@@ -8,7 +8,9 @@ public class CustomerConfig: IEntityTypeConfiguration<Customer>
 {
     public void Configure(EntityTypeBuilder<Customer> builder)
     {
-        builder.HasKey(nameof(Customer.Index), nameof(Customer.Id));
+        builder.HasKey(customer => customer.Id).IsClustered(false);
+        
+        builder.HasIndex(customer => customer.Index).IsUnique().IsClustered();
         builder.Property(customer => customer.Index).ValueGeneratedOnAdd();
         
         builder.Property(customer => customer.Name).IsRequired();

@@ -2,12 +2,16 @@ namespace CashBusiness.Domain.Entity;
 
 public class CashTransaction
 {
-    public int Index = 0;
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Index { get; set; }
+    public Guid Id { get; set; }
    
-    public string ClientId { get; set; } = String.Empty;
+    public Guid CustomerId { get; set; }
+    public Customer Customer { get; set; } = default!;
+    
+    public Guid OperationId { get; set; }
+    public Operation Operation { get; set; } = default!;
+    
     public string Voucher { get; set; } = String.Empty;
-    public string OperationId { get; set; } = String.Empty;
     public double Amount { get; set; } = 0.0;
     public string Observation { get; set; } = String.Empty;
 
