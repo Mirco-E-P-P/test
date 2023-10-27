@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Migration files
+
+src/CashBusiness.Api/Migrations/**
+
 # Sonar lint files
 
 .idea/**
